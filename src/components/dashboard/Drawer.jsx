@@ -14,6 +14,10 @@ import {
 
 // see: https://material-ui.com/components/material-icons/
 
+import GitHubIcon from "@material-ui/icons/GitHub";
+import HelpIcon from "@material-ui/icons/Help";
+import LogoIcon from "../Logo";
+
 const LISTS = [
   // {
   //   header: "ListSubheader",
@@ -22,6 +26,31 @@ const LISTS = [
   // {type: 'item', title: 'ItemName', href: '/', primary: '', secondary: '', Icon: IconName}
   // ]
   // }
+  {
+    items: [
+      {
+        type: "item",
+        title: "Help",
+        primary: "Help",
+        href: "/help",
+        Icon: HelpIcon
+      },
+      {
+        type: "item",
+        primary: "Snail Lettuce Adventure",
+        secondary: "v1.0.0",
+        Icon: LogoIcon
+      },
+      {
+        type: "item",
+        title: "Open repository",
+        href: "https://github.com/mastro-elfo/snail-lettuce-adventure",
+        primary: "mastro-elfo",
+        secondary: "GitHub",
+        Icon: GitHubIcon
+      }
+    ]
+  }
 ];
 
 const LARGER = false;
@@ -39,14 +68,6 @@ export default function DashboardDrawer({ open, onClose, onOpen }) {
           ))}
         </List>
       ))}
-      <List>
-        <ListItem>
-          <ListItemIcon>
-            <span>SLA</span>
-          </ListItemIcon>
-          <ListItemText primary="SnailLettuceAdventure" secondary="v1.0.0" />
-        </ListItem>
-      </List>
     </SwipeableDrawer>
   );
 }

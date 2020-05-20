@@ -9,10 +9,12 @@ import {
 } from "react-router-dom";
 
 import Dashboard from "./dashboard/Router";
+import Help from "./help/Router";
 
 const ROUTES = [
   // {path: '', component: RouterComponent, [exact]}
-  { path: "/dashboard", component: Dashboard, exact: true }
+  { path: "/dashboard", component: Dashboard },
+  { path: "/help", component: Help }
 ];
 
 export default function(props) {
