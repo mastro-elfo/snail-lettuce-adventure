@@ -1,8 +1,16 @@
 import React, { useEffect, useState } from "react";
 
 import DateFnsUtils from "@date-io/date-fns";
+import { useHistory } from "react-router-dom";
 
-import { List, ListItem, ListItemText, TextField } from "@material-ui/core";
+import {
+  IconButton,
+  InputAdornment,
+  List,
+  ListItem,
+  ListItemText,
+  TextField
+} from "@material-ui/core";
 import {
   MuiPickersUtilsProvider,
   KeyboardDateTimePicker
@@ -12,7 +20,11 @@ import BoxContainer from "../BoxContainer";
 
 import { sla2dhm, dhm2str, dateAddDhm, formatDate } from "./utils";
 
+import HelpIcon from "@material-ui/icons/Help";
+
 export default function DashboardContent() {
+  const { push } = useHistory();
+
   // SLA input value
   // Syntax: /(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/
   // Eg "1d 2h 3m"
@@ -24,10 +36,8 @@ export default function DashboardContent() {
   const [dhm, setDhm] = useState({ days: 0, hours: 0, minutes: 0 });
   // Now + SLA
   const [expiry, setExpiry] = useState(now);
-  //
+  // Requested expiry date/time
   const [request, setRequest] = useState(now);
-  //
-  const [until, setUntil] = useState(now);
 
   useEffect(() => {
     // This effect reloads `now` when minute changes
@@ -47,11 +57,6 @@ export default function DashboardContent() {
     setExpiry(dateAddDhm(now, dhm));
   }, [dhm, now]);
 
-  useEffect(() => {
-    // Updates `until` when `request` changes
-    setUntil(new Date(+now + (+request - expiry)));
-  }, [expiry, now, request]);
-
   return (
     <BoxContainer>
       <List>
@@ -66,10 +71,19 @@ export default function DashboardContent() {
           <TextField
             fullWidth
             label="Remaining SLA"
-            placeholder="E.g. 1d 3h 15m"
+            placeholder="E.g. 1d 4h 30"
             value={sla}
             helperText={dhm2str(dhm)}
             onChange={({ target: { value } }) => setSla(value)}
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton onClick={() => push("/help")} title="Help">
+                    <HelpIcon />
+                  </IconButton>
+                </InputAdornment>
+              )
+            }}
           />
         </ListItem>
 
@@ -94,7 +108,10 @@ export default function DashboardContent() {
         </ListItem>
 
         <ListItem>
-          <ListItemText primary={formatDate(until)} secondary="Suspend until" />
+          <ListItemText
+            primary={formatDate(new Date(+now + (+request - expiry)))}
+            secondary="Suspend until"
+          />
         </ListItem>
       </List>
     </BoxContainer>
