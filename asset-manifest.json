@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/snail-lettuce-adventure/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/snail-lettuce-adventure/static/js/main.9e3253e5.chunk.js",
+    "main.js.map": "/snail-lettuce-adventure/static/js/main.9e3253e5.chunk.js.map",
+    "runtime-main.js": "/snail-lettuce-adventure/static/js/runtime-main.be0df755.js",
+    "runtime-main.js.map": "/snail-lettuce-adventure/static/js/runtime-main.be0df755.js.map",
+    "static/js/2.48995f75.chunk.js": "/snail-lettuce-adventure/static/js/2.48995f75.chunk.js",
+    "static/js/2.48995f75.chunk.js.map": "/snail-lettuce-adventure/static/js/2.48995f75.chunk.js.map",
+    "index.html": "/snail-lettuce-adventure/index.html",
+    "precache-manifest.df9d71c4b8270714990da6a2aa119a3c.js": "/snail-lettuce-adventure/precache-manifest.df9d71c4b8270714990da6a2aa119a3c.js",
+    "service-worker.js": "/snail-lettuce-adventure/service-worker.js",
+    "static/css/main.5ecd60fb.chunk.css.map": "/snail-lettuce-adventure/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.48995f75.chunk.js.LICENSE.txt": "/snail-lettuce-adventure/static/js/2.48995f75.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.be0df755.js",
+    "static/js/2.48995f75.chunk.js",
+    "static/css/main.5ecd60fb.chunk.css",
+    "static/js/main.9e3253e5.chunk.js"
+  ]
+}
