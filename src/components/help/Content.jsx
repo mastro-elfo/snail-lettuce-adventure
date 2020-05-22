@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Typography } from "@material-ui/core";
+import { Typography } from "@material-ui/core";
 
 import BoxContainer from "../BoxContainer";
 
