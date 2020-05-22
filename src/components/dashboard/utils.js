@@ -1,17 +1,19 @@
 export const sla2dhm = sla => {
-  const parts = sla.match(/(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/);
+  const parts = sla.match(/(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/);
   return {
-    days: parts[1] === undefined ? 0 : parseInt(parts[1]),
-    hours: parts[2] === undefined ? 0 : parseInt(parts[2]),
-    minutes: parts[3] === undefined ? 0 : parseInt(parts[3])
+    weeks: parts[1] === undefined ? 0 : parseInt(parts[1]),
+    days: parts[2] === undefined ? 0 : parseInt(parts[2]),
+    hours: parts[3] === undefined ? 0 : parseInt(parts[3]),
+    minutes: parts[4] === undefined ? 0 : parseInt(parts[4])
   };
 };
 
 export const dhm2str = dhm => {
   const parts = [];
-  if (dhm.days) parts.push(dhmline(dhm.days, "day", "days"));
-  if (dhm.hours) parts.push(dhmline(dhm.hours, "hour", "hours"));
-  if (dhm.minutes) parts.push(dhmline(dhm.minutes, "minute", "minutes"));
+  if (dhm.weeks) parts.push(dhmline(dhm.weeks, "settimana", "settimane"));
+  if (dhm.days) parts.push(dhmline(dhm.days, "giorno", "giorni"));
+  if (dhm.hours) parts.push(dhmline(dhm.hours, "ora", "ore"));
+  if (dhm.minutes) parts.push(dhmline(dhm.minutes, "minuto", "minuti"));
   return andJoin(parts, ", ", " and ");
 };
 
@@ -41,5 +43,9 @@ export const formatDate = d =>
 
 export const dateAddDhm = (date, dhm) =>
   new Date(
-    +date + dhm.days * 86400000 + dhm.hours * 3600000 + dhm.minutes * 60000
+    +date +
+      dhm.weeks * 604800000 +
+      dhm.days * 86400000 +
+      dhm.hours * 3600000 +
+      dhm.minutes * 60000
   );
