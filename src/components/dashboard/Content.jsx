@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import DateFnsUtils from "@date-io/date-fns";
+import itLocale from "date-fns/locale/it";
 import { useHistory } from "react-router-dom";
 
 import {
@@ -8,6 +9,7 @@ import {
   InputAdornment,
   List,
   ListItem,
+  ListItemSecondaryAction,
   ListItemText,
   TextField
 } from "@material-ui/core";
@@ -21,6 +23,7 @@ import BoxContainer from "../BoxContainer";
 import { sla2dhm, dhm2str, dateAddDhm, formatDate } from "./utils";
 
 import HelpIcon from "@material-ui/icons/Help";
+import ReplayIcon from "@material-ui/icons/Replay";
 
 export default function DashboardContent() {
   const { push } = useHistory();
@@ -39,13 +42,13 @@ export default function DashboardContent() {
   // Requested expiry date/time
   const [request, setRequest] = useState(now);
 
-  useEffect(() => {
-    // This effect reloads `now` when minute changes
-    const to = setTimeout(() => {
-      setNow(new Date());
-    }, (60 - now.getSeconds()) * 1000);
-    return () => clearTimeout(to);
-  });
+  // useEffect(() => {
+  //   // This effect reloads `now` when minute changes
+  //   const to = setTimeout(() => {
+  //     setNow(new Date());
+  //   }, (60 - now.getSeconds()) * 1000);
+  //   return () => clearTimeout(to);
+  // });
 
   useEffect(() => {
     // Updates `dhm` when `sla` changes
@@ -57,6 +60,10 @@ export default function DashboardContent() {
     setExpiry(dateAddDhm(now, dhm));
   }, [dhm, now]);
 
+  const handleReloadNow = () => {
+    setNow(new Date());
+  };
+
   return (
     <BoxContainer>
       <List>
@@ -65,6 +72,11 @@ export default function DashboardContent() {
             primary={formatDate(now)}
             secondary="Actual date and time"
           />
+          <ListItemSecondaryAction>
+            <IconButton title="Ricarica" onClick={handleReloadNow}>
+              <ReplayIcon />
+            </IconButton>
+          </ListItemSecondaryAction>
         </ListItem>
 
         <ListItem>
@@ -95,9 +107,10 @@ export default function DashboardContent() {
         </ListItem>
 
         <ListItem>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils} locale={itLocale}>
             <KeyboardDateTimePicker
               fullWidth
+              ampm={false}
               label="Request expiry date/time"
               format="dd/MM/yyyy HH:mm"
               value={request}
