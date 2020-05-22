@@ -13,10 +13,10 @@ import {
 } from "@material-ui/core";
 
 // see: https://material-ui.com/components/material-icons/
-
 import GitHubIcon from "@material-ui/icons/GitHub";
 import HelpIcon from "@material-ui/icons/Help";
 import LogoIcon from "../Logo";
+import SettingsIcon from "@material-ui/icons/Settings";
 
 const LISTS = [
   // {
@@ -28,6 +28,13 @@ const LISTS = [
   // }
   {
     items: [
+      {
+        type: "item",
+        title: "Settings",
+        primary: "Settings",
+        href: "/settings",
+        Icon: SettingsIcon
+      },
       {
         type: "item",
         title: "Help",

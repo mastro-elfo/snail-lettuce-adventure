@@ -10,11 +10,13 @@ import {
 
 import Dashboard from "./dashboard/Router";
 import Help from "./help/Router";
+import Settings from "./settings/Router";
 
 const ROUTES = [
   // {path: '', component: RouterComponent, [exact]}
   { path: "/dashboard", component: Dashboard },
-  { path: "/help", component: Help }
+  { path: "/help", component: Help },
+  { path: "/settings", component: Settings }
 ];
 
 export default function(props) {
