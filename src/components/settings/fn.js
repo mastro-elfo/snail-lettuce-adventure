@@ -16,61 +16,117 @@ export function getWeek() {
   return week;
 }
 
-const WEEK = {
+export const WEEK = {
   monday: {
     morning: true,
-    morningStart: "2020-01-01T08:30",
-    morningEnd: "2020-01-01T12:30",
+    morningStart: "08:30",
+    morningStartHour: 8,
+    morningStartMinute: 30,
+    morningEnd: "12:30",
+    morningEndHour: 12,
+    morningEndMinute: 30,
     evening: true,
-    eveningStart: "2020-01-01T14:30",
-    eveningEnd: "2020-01-01T18:30"
+    eveningStart: "14:30",
+    eveningStartHour: 14,
+    eveningStartMinute: 30,
+    eveningEnd: "18:30",
+    eveningEndHour: 18,
+    eveningEndMinute: 30
   },
   tuesday: {
     morning: true,
-    morningStart: "2020-01-01T08:30",
-    morningEnd: "2020-01-01T12:30",
+    morningStart: "08:30",
+    morningStartHour: 8,
+    morningStartMinute: 30,
+    morningEnd: "12:30",
+    morningEndHour: 12,
+    morningEndMinute: 30,
     evening: true,
-    eveningStart: "2020-01-01T14:30",
-    eveningEnd: "2020-01-01T18:30"
+    eveningStart: "14:30",
+    eveningStartHour: 14,
+    eveningStartMinute: 30,
+    eveningEnd: "18:30",
+    eveningEndHour: 18,
+    eveningEndMinute: 30
   },
   wednesday: {
     morning: true,
-    morningStart: "2020-01-01T08:30",
-    morningEnd: "2020-01-01T12:30",
+    morningStart: "08:30",
+    morningStartHour: 8,
+    morningStartMinute: 30,
+    morningEnd: "12:30",
+    morningEndHour: 12,
+    morningEndMinute: 30,
     evening: true,
-    eveningStart: "2020-01-01T14:30",
-    eveningEnd: "2020-01-01T18:30"
+    eveningStart: "14:30",
+    eveningStartHour: 14,
+    eveningStartMinute: 30,
+    eveningEnd: "18:30",
+    eveningEndHour: 18,
+    eveningEndMinute: 30
   },
   thursday: {
     morning: true,
-    morningStart: "2020-01-01T08:30",
-    morningEnd: "2020-01-01T12:30",
+    morningStart: "08:30",
+    morningStartHour: 8,
+    morningStartMinute: 30,
+    morningEnd: "12:30",
+    morningEndHour: 12,
+    morningEndMinute: 30,
     evening: true,
-    eveningStart: "2020-01-01T14:30",
-    eveningEnd: "2020-01-01T18:30"
+    eveningStart: "14:30",
+    eveningStartHour: 14,
+    eveningStartMinute: 30,
+    eveningEnd: "18:30",
+    eveningEndHour: 18,
+    eveningEndMinute: 30
   },
   friday: {
     morning: true,
-    morningStart: "2020-01-01T08:30",
-    morningEnd: "2020-01-01T12:30",
+    morningStart: "08:30",
+    morningStartHour: 8,
+    morningStartMinute: 30,
+    morningEnd: "12:30",
+    morningEndHour: 12,
+    morningEndMinute: 30,
     evening: true,
-    eveningStart: "2020-01-01T14:30",
-    eveningEnd: "2020-01-01T18:30"
+    eveningStart: "14:30",
+    eveningStartHour: 14,
+    eveningStartMinute: 30,
+    eveningEnd: "18:30",
+    eveningEndHour: 18,
+    eveningEndMinute: 30
   },
   saturday: {
     morning: true,
-    morningStart: "2020-01-01T08:30",
-    morningEnd: "2020-01-01T12:30",
+    morningStart: "08:30",
+    morningStartHour: 8,
+    morningStartMinute: 30,
+    morningEnd: "12:30",
+    morningEndHour: 12,
+    morningEndMinute: 30,
     evening: false,
-    eveningStart: "2020-01-01T14:30",
-    eveningEnd: "2020-01-01T18:30"
+    eveningStart: "14:30",
+    eveningStartHour: 14,
+    eveningStartMinute: 30,
+    eveningEnd: "18:30",
+    eveningEndHour: 18,
+    eveningEndMinute: 30
   },
   sunday: {
     morning: false,
-    morningStart: "2020-01-01T08:30",
-    morningEnd: "2020-01-01T12:30",
+    morningStart: "08:30",
+    morningStartHour: 8,
+    morningStartMinute: 30,
+    morningEnd: "12:30",
+    morningEndHour: 12,
+    morningEndMinute: 30,
     evening: false,
-    eveningStart: "2020-01-01T14:30",
-    eveningEnd: "2020-01-01T18:30"
+    eveningStart: "14:30",
+    eveningStartHour: 14,
+    eveningStartMinute: 30,
+    eveningEnd: "18:30",
+    eveningEndHour: 18,
+    eveningEndMinute: 30
   }
 };
