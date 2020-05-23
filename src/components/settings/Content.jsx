@@ -80,50 +80,43 @@ const LABELS = {
   sunday: "sunday"
 };
 
-const Weekday = ({
-  config: {
+const Weekday = ({ config, weekday, onChange }) => {
+  const handleChange = value => {
+    onChange(weekday, {
+      ...config,
+      ...value
+    });
+  };
+
+  const {
     morning,
     morningStart,
     morningEnd,
     evening,
     eveningStart,
     eveningEnd
-  },
-  weekday,
-  onChange
-}) => {
-  const handleChange = (property, value) => {
-    onChange(weekday, {
-      morning,
-      morningStart,
-      morningEnd,
-      evening,
-      eveningStart,
-      eveningEnd,
-      [property]: value
-    });
-  };
+  } = config;
 
   return (
     <Grid item container alignItems="center" xs={12}>
       <Grid item container xs={12} sm={1} justify="flex-end">
         <Checkbox
           checked={morning}
-          onChange={() => handleChange("morning", !morning)}
+          onChange={() => handleChange({ morning: !morning })}
         />
       </Grid>
       <Grid item container alignItems="center" xs={12} sm={5}>
         <Item
           id="morningStart"
           label={`Start ${LABELS[weekday]} morning`}
-          value={new Date(morningStart)}
+          value={new Date(`2020-01-01T${morningStart}`)}
           disabled={!morning}
           onChange={handleChange}
         />
         <Item
           id="morningEnd"
           label={`End ${LABELS[weekday]} morning`}
-          value={new Date(morningEnd)}
+          value={new Date(`2020-01-01T${morningEnd}`)}
           disabled={!morning}
           onChange={handleChange}
         />
@@ -131,21 +124,21 @@ const Weekday = ({
       <Grid item container xs={12} sm={1} justify="flex-end">
         <Checkbox
           checked={evening}
-          onChange={() => handleChange("evening", !evening)}
+          onChange={() => handleChange({ evening: !evening })}
         />
       </Grid>
       <Grid item container alignItems="center" xs={12} sm={5}>
         <Item
           id="eveningStart"
           label={`Start ${LABELS[weekday]} evening`}
-          value={new Date(eveningStart)}
+          value={new Date(`2020-01-01T${eveningStart}`)}
           disabled={!evening}
           onChange={handleChange}
         />
         <Item
           id="eveningEnd"
           label={`End ${LABELS[weekday]} evening`}
-          value={new Date(eveningEnd)}
+          value={new Date(`2020-01-01T${eveningEnd}`)}
           disabled={!evening}
           onChange={handleChange}
         />
@@ -156,7 +149,15 @@ const Weekday = ({
 
 const Item = ({ id, onChange, ...others }) => {
   const handleChange = r => {
-    onChange(id, r.toISOString());
+    onChange({
+      [id]: r.toLocaleString(undefined, {
+        hour: "2-digit",
+        minute: "2-digit",
+        timeStyle: "short"
+      }),
+      [`${id}Hour`]: r.getHours(),
+      [`${id}Minute`]: r.getMinutes()
+    });
   };
 
   return (
