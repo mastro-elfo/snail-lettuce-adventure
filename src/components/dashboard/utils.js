@@ -10,10 +10,10 @@ export const sla2dhm = sla => {
 
 export const dhm2str = dhm => {
   const parts = [];
-  if (dhm.weeks) parts.push(dhmline(dhm.weeks, "settimana", "settimane"));
-  if (dhm.days) parts.push(dhmline(dhm.days, "giorno", "giorni"));
-  if (dhm.hours) parts.push(dhmline(dhm.hours, "ora", "ore"));
-  if (dhm.minutes) parts.push(dhmline(dhm.minutes, "minuto", "minuti"));
+  if (dhm.weeks) parts.push(dhmline(dhm.weeks, "week", "weeks"));
+  if (dhm.days) parts.push(dhmline(dhm.days, "day", "days"));
+  if (dhm.hours) parts.push(dhmline(dhm.hours, "hour", "hours"));
+  if (dhm.minutes) parts.push(dhmline(dhm.minutes, "minute", "minutes"));
   return andJoin(parts, ", ", " and ");
 };
 
