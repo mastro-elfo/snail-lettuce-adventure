@@ -21,7 +21,8 @@ import {
 
 import BoxContainer from "../BoxContainer";
 
-import { sla2dhm, dhm2str, dateAddDhm, formatDate } from "./utils";
+import { sla2dhm, dhm2str, dateAddDhm, formatDate, isWorking } from "./utils";
+import { getWeek } from "../settings/fn";
 
 import HelpIcon from "@material-ui/icons/Help";
 import ReplayIcon from "@material-ui/icons/Replay";
@@ -37,11 +38,13 @@ export default function DashboardContent() {
   const [now, setNow] = useState(new Date());
   // const [now] = useState(new Date(2020, 4, 18, 18, 0));
   // SLA exploded
-  const [dhm, setDhm] = useState({ days: 0, hours: 0, minutes: 0 });
+  const [dhm, setDhm] = useState({ weeks: 0, days: 0, hours: 0, minutes: 0 });
   // Now + SLA
   const [expiry, setExpiry] = useState(now);
   // Requested expiry date/time
   const [request, setRequest] = useState(now);
+  // Until
+  const [until, setUntil] = useState(now);
 
   // useEffect(() => {
   //   // This effect reloads `now` when minute changes
@@ -61,9 +64,19 @@ export default function DashboardContent() {
     setExpiry(dateAddDhm(now, dhm));
   }, [dhm, now]);
 
+  useEffect(() => {
+    setUntil(new Date(+now + (+request - expiry)));
+  }, [expiry, now, request]);
+
   const handleReloadNow = () => {
     setNow(new Date());
   };
+
+  const week = getWeek();
+  const nowIsWorking = isWorking(now, week);
+  console.log("expiryIsWorking");
+  const expiryIsWorking = isWorking(expiry, week);
+  const untilIsWorking = isWorking(until, week);
 
   return (
     <BoxContainer>
@@ -71,7 +84,15 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={formatDate(now)}
-            secondary="Actual date and time"
+            secondary={`Actual date and time ${
+              nowIsWorking ? "" : "is out of working hours"
+            }`}
+            primaryTypographyProps={{
+              ...(nowIsWorking ? null : { color: "error" })
+            }}
+            secondaryTypographyProps={{
+              ...(nowIsWorking ? null : { color: "error" })
+            }}
           />
           <ListItemSecondaryAction>
             <IconButton title="Ricarica" onClick={handleReloadNow}>
@@ -103,7 +124,15 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={expiry ? formatDate(expiry) : ""}
-            secondary="Expiry date and time"
+            secondary={`Expiry date and time ${
+              expiryIsWorking ? "" : "is out of working hours"
+            }`}
+            primaryTypographyProps={{
+              ...(expiryIsWorking ? null : { color: "error" })
+            }}
+            secondaryTypographyProps={{
+              ...(expiryIsWorking ? null : { color: "error" })
+            }}
           />
         </ListItem>
 
@@ -123,8 +152,16 @@ export default function DashboardContent() {
 
         <ListItem>
           <ListItemText
-            primary={formatDate(new Date(+now + (+request - expiry)))}
-            secondary="Suspend until"
+            primary={formatDate(until)}
+            secondary={`Suspend until ${
+              untilIsWorking ? "" : "is out of working hours"
+            }`}
+            primaryTypographyProps={{
+              ...(untilIsWorking ? null : { color: "error" })
+            }}
+            secondaryTypographyProps={{
+              ...(untilIsWorking ? null : { color: "error" })
+            }}
           />
         </ListItem>
       </List>
