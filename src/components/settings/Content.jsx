@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import DateFnsUtils from "@date-io/date-fns";
 import itLocale from "date-fns/locale/it";
@@ -12,78 +12,58 @@ import {
 
 import BoxContainer from "../BoxContainer";
 
+import { getWeek, set as setSettings } from "./fn";
+
 export default function SettingsContent() {
-  const week = {
-    monday: {
-      morning: true,
-      morningStart: "2020-01-01T08:30",
-      morningEnd: "2020-01-01T12:30",
-      evening: true,
-      eveningStart: "2020-01-01T14:30",
-      eveningEnd: "2020-01-01T18:30"
-    },
-    tuesday: {
-      morning: true,
-      morningStart: "2020-01-01T08:30",
-      morningEnd: "2020-01-01T12:30",
-      evening: true,
-      eveningStart: "2020-01-01T14:30",
-      eveningEnd: "2020-01-01T18:30"
-    },
-    wednesday: {
-      morning: true,
-      morningStart: "2020-01-01T08:30",
-      morningEnd: "2020-01-01T12:30",
-      evening: true,
-      eveningStart: "2020-01-01T14:30",
-      eveningEnd: "2020-01-01T18:30"
-    },
-    thursday: {
-      morning: true,
-      morningStart: "2020-01-01T08:30",
-      morningEnd: "2020-01-01T12:30",
-      evening: true,
-      eveningStart: "2020-01-01T14:30",
-      eveningEnd: "2020-01-01T18:30"
-    },
-    friday: {
-      morning: true,
-      morningStart: "2020-01-01T08:30",
-      morningEnd: "2020-01-01T12:30",
-      evening: true,
-      eveningStart: "2020-01-01T14:30",
-      eveningEnd: "2020-01-01T18:30"
-    },
-    saturday: {
-      morning: true,
-      morningStart: "2020-01-01T08:30",
-      morningEnd: "2020-01-01T12:30",
-      evening: false,
-      eveningStart: "2020-01-01T14:30",
-      eveningEnd: "2020-01-01T18:30"
-    },
-    sunday: {
-      morning: false,
-      morningStart: "2020-01-01T08:30",
-      morningEnd: "2020-01-01T12:30",
-      evening: false,
-      eveningStart: "2020-01-01T14:30",
-      eveningEnd: "2020-01-01T18:30"
-    }
+  const [week, setWeek] = useState(getWeek());
+
+  useEffect(() => {
+    setSettings("week", week);
+  }, [week]);
+
+  const handleChange = (weekday, config) => {
+    setWeek({ ...week, [weekday]: config });
   };
 
   return (
     <BoxContainer>
-      <Typography>Work in progress...</Typography>
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={itLocale}>
         <Grid container spacing={2}>
-          <Weekday weekday="monday" config={week.monday} />
-          <Weekday weekday="tuesday" config={week.tuesday} />
-          <Weekday weekday="wednesday" config={week.wednesday} />
-          <Weekday weekday="thursday" config={week.thursday} />
-          <Weekday weekday="friday" config={week.friday} />
-          <Weekday weekday="saturday" config={week.saturday} />
-          <Weekday weekday="sunday" config={week.sunday} />
+          <Weekday
+            weekday="monday"
+            config={week.monday}
+            onChange={handleChange}
+          />
+          <Weekday
+            weekday="tuesday"
+            config={week.tuesday}
+            onChange={handleChange}
+          />
+          <Weekday
+            weekday="wednesday"
+            config={week.wednesday}
+            onChange={handleChange}
+          />
+          <Weekday
+            weekday="thursday"
+            config={week.thursday}
+            onChange={handleChange}
+          />
+          <Weekday
+            weekday="friday"
+            config={week.friday}
+            onChange={handleChange}
+          />
+          <Weekday
+            weekday="saturday"
+            config={week.saturday}
+            onChange={handleChange}
+          />
+          <Weekday
+            weekday="sunday"
+            config={week.sunday}
+            onChange={handleChange}
+          />
         </Grid>
       </MuiPickersUtilsProvider>
     </BoxContainer>
@@ -91,13 +71,13 @@ export default function SettingsContent() {
 }
 
 const LABELS = {
-  monday: "lunedì",
-  tuesday: "martedì",
-  wednesday: "mercoledì",
-  thursday: "giovedì",
-  friday: "venerdì",
-  saturday: "sabato",
-  sunday: "domenica"
+  monday: "monday",
+  tuesday: "tuesday",
+  wednesday: "wednesday",
+  thursday: "thursday",
+  friday: "friday",
+  saturday: "saturday",
+  sunday: "sunday"
 };
 
 const Weekday = ({
@@ -109,44 +89,85 @@ const Weekday = ({
     eveningStart,
     eveningEnd
   },
-  weekday
-}) => (
-  <Grid item container alignItems="center" xs={12}>
-    <Grid item container xs={12} sm={1} justify="flex-end">
-      <Checkbox checked={morning} />
-    </Grid>
-    <Grid item container alignItems="center" xs={12} sm={5}>
-      <Item
-        label={`Inizio ${LABELS[weekday]} mattina`}
-        value={new Date(morningStart)}
-        disabled={!morning}
-      />
-      <Item
-        label={`Fine ${LABELS[weekday]} mattina`}
-        value={new Date(morningEnd)}
-        disabled={!morning}
-      />
-    </Grid>
-    <Grid item container xs={12} sm={1} justify="flex-end">
-      <Checkbox checked={evening} />
-    </Grid>
-    <Grid item container alignItems="center" xs={12} sm={5}>
-      <Item
-        label={`Inizio ${LABELS[weekday]} pomeriggio`}
-        value={new Date(eveningStart)}
-        disabled={!evening}
-      />
-      <Item
-        label={`Fine ${LABELS[weekday]} pomeriggio`}
-        value={new Date(eveningEnd)}
-        disabled={!evening}
-      />
-    </Grid>
-  </Grid>
-);
+  weekday,
+  onChange
+}) => {
+  const handleChange = (property, value) => {
+    onChange(weekday, {
+      morning,
+      morningStart,
+      morningEnd,
+      evening,
+      eveningStart,
+      eveningEnd,
+      [property]: value
+    });
+  };
 
-const Item = props => (
-  <Grid item xs={12} md={6}>
-    <KeyboardTimePicker fullWidth ampm={false} format="HH:mm" {...props} />
-  </Grid>
-);
+  return (
+    <Grid item container alignItems="center" xs={12}>
+      <Grid item container xs={12} sm={1} justify="flex-end">
+        <Checkbox
+          checked={morning}
+          onChange={() => handleChange("morning", !morning)}
+        />
+      </Grid>
+      <Grid item container alignItems="center" xs={12} sm={5}>
+        <Item
+          id="morningStart"
+          label={`Start ${LABELS[weekday]} morning`}
+          value={new Date(morningStart)}
+          disabled={!morning}
+          onChange={handleChange}
+        />
+        <Item
+          id="morningEnd"
+          label={`End ${LABELS[weekday]} morning`}
+          value={new Date(morningEnd)}
+          disabled={!morning}
+          onChange={handleChange}
+        />
+      </Grid>
+      <Grid item container xs={12} sm={1} justify="flex-end">
+        <Checkbox
+          checked={evening}
+          onChange={() => handleChange("evening", !evening)}
+        />
+      </Grid>
+      <Grid item container alignItems="center" xs={12} sm={5}>
+        <Item
+          id="eveningStart"
+          label={`Start ${LABELS[weekday]} evening`}
+          value={new Date(eveningStart)}
+          disabled={!evening}
+          onChange={handleChange}
+        />
+        <Item
+          id="eveningEnd"
+          label={`End ${LABELS[weekday]} evening`}
+          value={new Date(eveningEnd)}
+          disabled={!evening}
+          onChange={handleChange}
+        />
+      </Grid>
+    </Grid>
+  );
+};
+
+const Item = ({ id, onChange, ...others }) => {
+  const handleChange = r => {
+    onChange(id, r.toISOString());
+  };
+
+  return (
+    <Grid item xs={12} md={6}>
+      <KeyboardTimePicker
+        fullWidth
+        ampm={false}
+        format="HH:mm"
+        {...others}
+        onChange={handleChange}
+      />
+    </Grid>
+  );
+};
