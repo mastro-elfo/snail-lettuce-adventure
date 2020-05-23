@@ -16,7 +16,7 @@ import {
 import GitHubIcon from "@material-ui/icons/GitHub";
 import HelpIcon from "@material-ui/icons/Help";
 import LogoIcon from "../Logo";
-import SettingsIcon from "@material-ui/icons/Settings";
+// import SettingsIcon from "@material-ui/icons/Settings";
 
 const LISTS = [
   // {
@@ -28,13 +28,13 @@ const LISTS = [
   // }
   {
     items: [
-      {
-        type: "item",
-        title: "Settings",
-        primary: "Settings",
-        href: "/settings",
-        Icon: SettingsIcon
-      },
+      // {
+      //   type: "item",
+      //   title: "Settings",
+      //   primary: "Settings",
+      //   href: "/settings",
+      //   Icon: SettingsIcon
+      // },
       {
         type: "item",
         title: "Help",
@@ -46,6 +46,7 @@ const LISTS = [
         type: "item",
         primary: "Snail Lettuce Adventure",
         secondary: "v1.1.0",
+        href: "/about",
         Icon: LogoIcon
       },
       {

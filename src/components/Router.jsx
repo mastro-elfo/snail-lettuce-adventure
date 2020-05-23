@@ -8,12 +8,14 @@ import {
   Redirect
 } from "react-router-dom";
 
+import About from "./about/Router";
 import Dashboard from "./dashboard/Router";
 import Help from "./help/Router";
 import Settings from "./settings/Router";
 
 const ROUTES = [
   // {path: '', component: RouterComponent, [exact]}
+  { path: "/about", component: About },
   { path: "/dashboard", component: Dashboard },
   { path: "/help", component: Help },
   { path: "/settings", component: Settings }
