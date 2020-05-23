@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import itLocale from "date-fns/locale/it";
 
-import { Checkbox, Grid, Typography } from "@material-ui/core";
+import { Checkbox, Grid } from "@material-ui/core";
 
 import {
   MuiPickersUtilsProvider,
