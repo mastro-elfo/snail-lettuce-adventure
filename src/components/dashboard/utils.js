@@ -44,8 +44,61 @@ export const formatDate = d =>
 export const dateAddDhm = (date, dhm) =>
   new Date(
     +date +
-      dhm.weeks * 604800000 +
-      dhm.days * 86400000 +
-      dhm.hours * 3600000 +
-      dhm.minutes * 60000
+      (dhm.weeks ? dhm.weeks * 604800000 : 0) +
+      (dhm.days ? dhm.days * 86400000 : 0) +
+      (dhm.hours ? dhm.hours * 3600000 : 0) +
+      (dhm.minutes ? dhm.minutes * 60000 : 0)
   );
+
+export const isWorking = (date, table) => {
+  // Get weekday
+  const weekday = num2weekday(date.getDay());
+  // Get config item
+  const config = table[weekday];
+  // Create morning/evening start/end dates
+  const morningStart = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    config.morningStartHour,
+    config.morningStartMinute
+  );
+  // console.log(config.morningEndHour, config.morningEndMinute);
+  const morningEnd = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    config.morningEndHour,
+    config.morningEndMinute
+  );
+  const eveningStart = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    config.eveningStartHour,
+    config.eveningStartMinute
+  );
+  const eveningEnd = new Date(
+    date.getFullYear(),
+    date.getMonth(),
+    date.getDate(),
+    config.eveningEndHour,
+    config.eveningEndMinute
+  );
+  // Compare dates
+  return (
+    (config.morning && date >= morningStart && date <= morningEnd) ||
+    (config.evening && date >= eveningStart && date <= eveningEnd)
+  );
+};
+
+export const num2weekday = day =>
+  ({
+    0: "sunday",
+    1: "monday",
+    2: "tuesday",
+    3: "wednesday",
+    4: "thursday",
+    5: "friday",
+    6: "saturday"
+  }[day % 7]);
