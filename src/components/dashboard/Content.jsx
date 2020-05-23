@@ -74,7 +74,6 @@ export default function DashboardContent() {
 
   const week = getWeek();
   const nowIsWorking = isWorking(now, week);
-  console.log("expiryIsWorking");
   const expiryIsWorking = isWorking(expiry, week);
   const untilIsWorking = isWorking(until, week);
 
