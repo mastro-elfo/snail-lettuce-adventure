@@ -1,12 +1,18 @@
 import {
   andJoin,
+  config2date,
   dateAddDhm,
   dhmline,
   dhm2str,
+  evalLength,
+  findNextStart,
   formatDate,
   isWorking,
+  list2length,
   pluralize,
   sla2dhm,
+  lengthEnd,
+  table2list,
   workingIntervals
 } from "./utils";
 
@@ -88,6 +94,30 @@ describe("Convert dhm object to string", () => {
       })
     ).toEqual("1 week, 2 days, 3 hours and 4 minutes");
   });
+
+  test("7 days", () => {
+    expect(
+      dhm2str({
+        days: 7
+      })
+    ).toBe("1 week");
+  });
+
+  test("24 hours", () => {
+    expect(
+      dhm2str({
+        hours: 24
+      })
+    ).toBe("1 day");
+  });
+
+  test("60 minutes", () => {
+    expect(
+      dhm2str({
+        minutes: 60
+      })
+    ).toBe("1 hour");
+  });
 });
 
 describe("Create a line", () => {
@@ -149,10 +179,7 @@ describe("Add dhm object to date", () => {
     expect(
       formatDate(
         dateAddDhm(new Date("2020-01-01 12:00"), {
-          weeks: 1,
-          days: 0,
-          hours: 0,
-          minutes: 0
+          weeks: 1
         })
       )
     ).toEqual("2020-01-08 12:00");
@@ -162,10 +189,7 @@ describe("Add dhm object to date", () => {
     expect(
       formatDate(
         dateAddDhm(new Date("2020-01-01 12:00"), {
-          weeks: 0,
-          days: 1,
-          hours: 0,
-          minutes: 0
+          days: 1
         })
       )
     ).toEqual("2020-01-02 12:00");
@@ -175,10 +199,7 @@ describe("Add dhm object to date", () => {
     expect(
       formatDate(
         dateAddDhm(new Date("2020-01-01 12:00"), {
-          weeks: 0,
-          days: 0,
-          hours: 1,
-          minutes: 0
+          hours: 1
         })
       )
     ).toEqual("2020-01-01 13:00");
@@ -188,9 +209,6 @@ describe("Add dhm object to date", () => {
     expect(
       formatDate(
         dateAddDhm(new Date("2020-01-01 12:00"), {
-          weeks: 0,
-          days: 0,
-          hours: 0,
           minutes: 1
         })
       )
@@ -208,6 +226,36 @@ describe("Add dhm object to date", () => {
         })
       )
     ).toEqual("2020-01-10 15:04");
+  });
+
+  test("Add 7 days", () => {
+    expect(
+      formatDate(
+        dateAddDhm(new Date("2020-01-01 12:00"), {
+          days: 7
+        })
+      )
+    ).toEqual("2020-01-08 12:00");
+  });
+
+  test("Add 24 hours", () => {
+    expect(
+      formatDate(
+        dateAddDhm(new Date("2020-01-01 12:00"), {
+          hours: 24
+        })
+      )
+    ).toEqual("2020-01-02 12:00");
+  });
+
+  test("Add 60 minutes", () => {
+    expect(
+      formatDate(
+        dateAddDhm(new Date("2020-01-01 12:00"), {
+          minutes: 60
+        })
+      )
+    ).toEqual("2020-01-01 13:00");
   });
 });
 
@@ -231,5 +279,253 @@ describe("DateTime inside or outside working interval", () => {
   test("Sunday", () => {
     expect(isWorking(new Date("2020-01-05T10:30"), WEEK)).toBe(false);
     expect(isWorking(new Date("2020-01-05T16:30"), WEEK)).toBe(false);
+  });
+});
+
+describe("Convert a config input to a date", () => {
+  test("morningStart", () => {
+    expect(
+      formatDate(config2date(new Date("2020-01-01"), WEEK, "morningStart"))
+    ).toEqual("2020-01-01 08:30");
+  });
+  test("morningEnd", () => {
+    expect(
+      formatDate(config2date(new Date("2020-01-01"), WEEK, "morningEnd"))
+    ).toEqual("2020-01-01 12:30");
+  });
+  test("eveningStart", () => {
+    expect(
+      formatDate(config2date(new Date("2020-01-01"), WEEK, "eveningStart"))
+    ).toEqual("2020-01-01 14:30");
+  });
+  test("eveningEnd", () => {
+    expect(
+      formatDate(config2date(new Date("2020-01-01"), WEEK, "eveningEnd"))
+    ).toEqual("2020-01-01 18:30");
+  });
+  test("Invalid label", () => {
+    expect(
+      config2date(new Date("2020-01-01"), WEEK, "invalid label")
+    ).toBeNull();
+  });
+  test("Sunday", () => {
+    expect(
+      config2date(new Date("2020-01-05"), WEEK, "morningStart")
+    ).toBeNull();
+  });
+});
+
+describe("Evaluate effective time given a list of start/end pairs", () => {
+  test("Empty list", () => {
+    expect(list2length([])).toBe(0);
+  });
+  test("length 1", () => {
+    expect(
+      list2length([
+        {
+          start: new Date("2020-01-01"),
+          end: new Date("2020-01-02")
+        }
+      ])
+    ).toBe(24 * 60 * 60 * 1000);
+  });
+  test("length 2", () => {
+    expect(
+      list2length([
+        {
+          start: new Date("2020-01-01"),
+          end: new Date("2020-01-02")
+        },
+        {
+          start: new Date("2020-01-03"),
+          end: new Date("2020-01-04")
+        }
+      ])
+    ).toBe(2 * 24 * 60 * 60 * 1000);
+  });
+});
+
+describe("Find the next start in the table list", () => {
+  test("Wednesday night", () => {
+    expect(formatDate(findNextStart(new Date("2020-01-01"), WEEK))).toBe(
+      "2020-01-01 08:30"
+    );
+  });
+
+  test("Wednesday morning", () => {
+    expect(formatDate(findNextStart(new Date("2020-01-01T10:30"), WEEK))).toBe(
+      "2020-01-01 14:30"
+    );
+  });
+
+  test("Wednesday evening", () => {
+    expect(formatDate(findNextStart(new Date("2020-01-01T16:30"), WEEK))).toBe(
+      "2020-01-02 08:30"
+    );
+  });
+
+  test("Saturday morning", () => {
+    expect(formatDate(findNextStart(new Date("2020-01-04T10:30"), WEEK))).toBe(
+      "2020-01-06 08:30"
+    );
+  });
+});
+
+describe("Create the list of working intervals", () => {
+  test("Wednesday morning", () => {
+    expect(
+      table2list(
+        new Date("2020-01-01T08:30"),
+        new Date("2020-01-01T12:30"),
+        WEEK,
+        []
+      ).map(({ start, end }) => ({
+        start: formatDate(start),
+        end: formatDate(end)
+      }))
+    ).toEqual([
+      {
+        start: "2020-01-01 08:30",
+        end: "2020-01-01 12:30"
+      }
+    ]);
+  });
+
+  test("Wednesday all day", () => {
+    expect(
+      table2list(
+        new Date("2020-01-01T08:30"),
+        new Date("2020-01-01T18:30"),
+        WEEK,
+        []
+      ).map(({ start, end }) => ({
+        start: formatDate(start),
+        end: formatDate(end)
+      }))
+    ).toEqual([
+      {
+        start: "2020-01-01 08:30",
+        end: "2020-01-01 12:30"
+      },
+      {
+        start: "2020-01-01 14:30",
+        end: "2020-01-01 18:30"
+      }
+    ]);
+  });
+
+  test("Wednesday all day", () => {
+    expect(
+      table2list(
+        new Date("2020-01-01T08:30"),
+        new Date("2020-01-02T18:30"),
+        WEEK,
+        []
+      ).map(({ start, end }) => ({
+        start: formatDate(start),
+        end: formatDate(end)
+      }))
+    ).toEqual([
+      {
+        start: "2020-01-01 08:30",
+        end: "2020-01-01 12:30"
+      },
+      {
+        start: "2020-01-01 14:30",
+        end: "2020-01-01 18:30"
+      },
+      {
+        start: "2020-01-02 08:30",
+        end: "2020-01-02 12:30"
+      },
+      {
+        start: "2020-01-02 14:30",
+        end: "2020-01-02 18:30"
+      }
+    ]);
+  });
+});
+
+describe("Evaluate the effective length between start and end", () => {
+  test("1 hour long", () => {
+    expect(
+      evalLength(
+        new Date("2020-01-01T08:30"),
+        new Date("2020-01-01T09:30"),
+        WEEK
+      )
+    ).toBe(60 * 60 * 1000);
+  });
+
+  test("8 hours long", () => {
+    expect(
+      evalLength(
+        new Date("2020-01-01T08:30"),
+        new Date("2020-01-01T18:30"),
+        WEEK
+      )
+    ).toBe(8 * 60 * 60 * 1000);
+  });
+
+  test("16 hours long", () => {
+    expect(
+      evalLength(
+        new Date("2020-01-01T08:30"),
+        new Date("2020-01-02T18:30"),
+        WEEK
+      )
+    ).toBe(16 * 60 * 60 * 1000);
+  });
+
+  test("Weekend", () => {
+    expect(
+      evalLength(
+        new Date("2020-01-04T08:30"),
+        new Date("2020-01-06T18:30"),
+        WEEK
+      )
+    ).toBe(12 * 60 * 60 * 1000);
+  });
+});
+
+describe("Evaluate the end of a length", () => {
+  test("Wednesday 4h", () => {
+    expect(
+      formatDate(
+        lengthEnd(new Date("2020-01-01T08:30"), 4 * 60 * 60 * 1000, WEEK)
+      )
+    ).toBe("2020-01-01 12:30");
+  });
+
+  test("Wednesday 6h", () => {
+    expect(
+      formatDate(
+        lengthEnd(new Date("2020-01-01T08:30"), 6 * 60 * 60 * 1000, WEEK)
+      )
+    ).toBe("2020-01-01 16:30");
+  });
+
+  test("Wednesday 8h", () => {
+    expect(
+      formatDate(
+        lengthEnd(new Date("2020-01-01T08:30"), 8 * 60 * 60 * 1000, WEEK)
+      )
+    ).toBe("2020-01-01 18:30");
+  });
+
+  test("Wednesday 12h", () => {
+    expect(
+      formatDate(
+        lengthEnd(new Date("2020-01-01T08:30"), 12 * 60 * 60 * 1000, WEEK)
+      )
+    ).toBe("2020-01-02 12:30");
+  });
+
+  test("Wednesday 32h", () => {
+    expect(
+      formatDate(
+        lengthEnd(new Date("2020-01-01T08:30"), 32 * 60 * 60 * 1000, WEEK)
+      )
+    ).toBe("2020-01-06 12:30");
   });
 });

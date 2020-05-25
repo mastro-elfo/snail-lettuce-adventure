@@ -21,7 +21,15 @@ import {
 
 import BoxContainer from "../BoxContainer";
 
-import { sla2dhm, dhm2str, dateAddDhm, formatDate, isWorking } from "./utils";
+import {
+  sla2dhm,
+  dhm2str,
+  dateAddDhm,
+  formatDate,
+  isWorking,
+  lengthEnd,
+  evalLength
+} from "./utils";
 import { getWeek } from "../settings/fn";
 
 import HelpIcon from "@material-ui/icons/Help";
@@ -65,7 +73,21 @@ export default function DashboardContent() {
   }, [dhm, now]);
 
   useEffect(() => {
-    setUntil(new Date(+now + (+request - expiry)));
+    const week = getWeek();
+    // setUntil(new Date(+now + (+request - expiry)));
+    const length = evalLength(new Date(expiry), new Date(request), week);
+    // const length = 0;
+    if (length > 0) {
+      setUntil(
+        lengthEnd(
+          now,
+          evalLength(new Date(expiry), new Date(request), week),
+          week
+        )
+      );
+    } else {
+      setUntil(new Date(now));
+    }
   }, [expiry, now, request]);
 
   const handleReloadNow = () => {
@@ -76,6 +98,8 @@ export default function DashboardContent() {
   const nowIsWorking = isWorking(now, week);
   const expiryIsWorking = isWorking(expiry, week);
   const untilIsWorking = isWorking(until, week);
+  const untilIsGreaterThanRequest = +until > +request;
+  const untilError = !untilIsWorking || untilIsGreaterThanRequest;
 
   return (
     <BoxContainer>
@@ -94,7 +118,7 @@ export default function DashboardContent() {
             }}
           />
           <ListItemSecondaryAction>
-            <IconButton title="Ricarica" onClick={handleReloadNow}>
+            <IconButton title="Reload" onClick={handleReloadNow}>
               <ReplayIcon />
             </IconButton>
           </ListItemSecondaryAction>
@@ -145,6 +169,9 @@ export default function DashboardContent() {
               value={request}
               onChange={r => setRequest(r)}
               error={+request < +expiry}
+              helperText={
+                +request < +expiry ? "Request is lower than expiry" : ""
+              }
             />
           </MuiPickersUtilsProvider>
         </ListItem>
@@ -153,13 +180,17 @@ export default function DashboardContent() {
           <ListItemText
             primary={formatDate(until)}
             secondary={`Suspend until ${
-              untilIsWorking ? "" : "is out of working hours"
+              untilIsGreaterThanRequest
+                ? "is greater than request"
+                : !untilIsWorking
+                ? "is out of working hours"
+                : ""
             }`}
             primaryTypographyProps={{
-              ...(untilIsWorking ? null : { color: "error" })
+              ...(untilError ? { color: "error" } : null)
             }}
             secondaryTypographyProps={{
-              ...(untilIsWorking ? null : { color: "error" })
+              ...(untilError ? { color: "error" } : null)
             }}
           />
         </ListItem>
