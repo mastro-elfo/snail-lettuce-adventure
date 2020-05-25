@@ -17,7 +17,8 @@ const md = `
 ### New in version 1.2
 
 * When a date/time is out of working hour text is red and shows a message;
-* Add working hour table under settings.
+* Add working hour table under settings;
+* Correct evaluation of "Suspend until" date/time.
 
 ### New in version 1.1
 
