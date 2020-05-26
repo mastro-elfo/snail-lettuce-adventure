@@ -44,7 +44,7 @@ export default function DashboardContent() {
   const [sla, setSla] = useState("");
   // Now
   const [now, setNow] = useState(new Date());
-  // const [now] = useState(new Date(2020, 4, 18, 18, 0));
+  // const [now, setNow] = useState(new Date(2020, 4, 26, 9, 40));
   // SLA exploded
   const [dhm, setDhm] = useState({ weeks: 0, days: 0, hours: 0, minutes: 0 });
   // Now + SLA
@@ -78,13 +78,7 @@ export default function DashboardContent() {
     const length = evalLength(new Date(expiry), new Date(request), week);
     // const length = 0;
     if (length > 0) {
-      setUntil(
-        lengthEnd(
-          now,
-          evalLength(new Date(expiry), new Date(request), week),
-          week
-        )
-      );
+      setUntil(lengthEnd(now, length, week));
     } else {
       setUntil(new Date(now));
     }

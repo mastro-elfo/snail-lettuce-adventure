@@ -237,7 +237,7 @@ export const findNextStart = (date, table) => {
  */
 export const table2list = (start, end, table, list = []) => {
   // Start is previous than end
-  if (+start >= +end) return [];
+  if (+start >= +end) return list;
   // Initialize constants
   const _list = list.slice();
   const morningEnd = config2date(start, table, "morningEnd");

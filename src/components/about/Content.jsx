@@ -14,6 +14,10 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.3
+
+* Bug fix.
+
 ### New in version 1.2
 
 * When a date/time is out of working hour text is red and shows a message;
