@@ -444,6 +444,25 @@ describe("Create the list of working intervals", () => {
       }
     ]);
   });
+
+  test("Wednesday all day", () => {
+    expect(
+      table2list(
+        new Date("2020-01-01T08:30"),
+        new Date("2020-01-01T14:30"),
+        WEEK,
+        []
+      ).map(({ start, end }) => ({
+        start: formatDate(start),
+        end: formatDate(end)
+      }))
+    ).toEqual([
+      {
+        start: "2020-01-01 08:30",
+        end: "2020-01-01 12:30"
+      }
+    ]);
+  });
 });
 
 describe("Evaluate the effective length between start and end", () => {
