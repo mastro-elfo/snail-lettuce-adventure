@@ -16,6 +16,128 @@ export function getWeek() {
   return week;
 }
 
+/**
+ * Returns `true` if `table` is valid, `false` otherwise
+ * @param  array table [description]
+ * @return bool       [description]
+ */
+export function validate(table) {
+  // At leas 1 day and 1 morning/evening must be true
+  if (!validateOneTrue(table)) return false;
+
+  // Each start must be less than the corresponding end
+  if (!validateStartEnd(table)) return false;
+
+  // Morning times must be less than evening's
+  if (!validateMorningEvening(table)) return false;
+
+  return true;
+}
+
+export const validateOneTrue = table =>
+  Object.keys(table)
+    .map(v => [table[v].morning, table[v].evening])
+    .reduce((c, i) => c.concat(i), [])
+    .some(v => v);
+
+export const validateStartEnd = table =>
+  Object.keys(table)
+    .map(v => [
+      +new Date(
+        2020,
+        0,
+        1,
+        table[v].morningStartHour,
+        table[v].morningStartMinute
+      ) <
+        +new Date(
+          2020,
+          0,
+          1,
+          table[v].morningEndHour,
+          table[v].morningEndMinute
+        ),
+      +new Date(
+        2020,
+        0,
+        1,
+        table[v].eveningStartHour,
+        table[v].eveningStartMinute
+      ) <
+        +new Date(
+          2020,
+          0,
+          1,
+          table[v].eveningEndHour,
+          table[v].eveningEndMinute
+        )
+    ])
+    .reduce((c, i) => c.concat(i), [])
+    .every(v => v);
+
+export const validateMorningEvening = table =>
+  Object.keys(table)
+    .map(v => [
+      +new Date(
+        2020,
+        0,
+        1,
+        table[v].morningStartHour,
+        table[v].morningStartMinute
+      ) <
+        +new Date(
+          2020,
+          0,
+          1,
+          table[v].eveningStartHour,
+          table[v].eveningStartMinute
+        ),
+      +new Date(
+        2020,
+        0,
+        1,
+        table[v].morningStartHour,
+        table[v].morningStartMinute
+      ) <
+        +new Date(
+          2020,
+          0,
+          1,
+          table[v].eveningEndHour,
+          table[v].eveningEndMinute
+        ),
+      +new Date(
+        2020,
+        0,
+        1,
+        table[v].morningEndHour,
+        table[v].morningEndMinute
+      ) <
+        +new Date(
+          2020,
+          0,
+          1,
+          table[v].eveningStartHour,
+          table[v].eveningStartMinute
+        ),
+      +new Date(
+        2020,
+        0,
+        1,
+        table[v].morningEndHour,
+        table[v].morningEndMinute
+      ) <
+        +new Date(
+          2020,
+          0,
+          1,
+          table[v].eveningEndHour,
+          table[v].eveningEndMinute
+        )
+    ])
+    .reduce((c, i) => c.concat(i), [])
+    .every(v => v);
+
 export const WEEK = {
   monday: {
     morning: true,
