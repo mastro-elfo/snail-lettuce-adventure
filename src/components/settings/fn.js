@@ -16,6 +16,12 @@ export function getWeek() {
   return week;
 }
 
+export function getHolidays() {
+  const holidays = get("holidays");
+  if (!holidays) return HOLIDAYS;
+  return holidays;
+}
+
 /**
  * Returns `true` if `table` is valid, `false` otherwise
  * @param  array table [description]
