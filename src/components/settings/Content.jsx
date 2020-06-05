@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import itLocale from "date-fns/locale/it";
 
-import { Checkbox, Grid } from "@material-ui/core";
+import { Checkbox, Grid, Typography } from "@material-ui/core";
 
 import {
   MuiPickersUtilsProvider,
@@ -27,6 +27,8 @@ export default function SettingsContent() {
 
   return (
     <BoxContainer>
+      <Typography variant="h6">Working hours</Typography>
+
       <MuiPickersUtilsProvider utils={DateFnsUtils} locale={itLocale}>
         <Grid container spacing={2}>
           <Weekday
