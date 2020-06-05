@@ -19,7 +19,7 @@ export function getWeek() {
 export function getHolidays() {
   const holidays = get("holidays");
   if (!holidays) return HOLIDAYS;
-  return holidays;
+  return Object.assign(holidays, HOLIDAYS);
 }
 
 /**
@@ -272,7 +272,12 @@ export const HOLIDAYS = {
     month: 0,
     day: 6
   },
-  // Easter monday
+  easterMonday: {
+    title: "Easter monday",
+    active: false,
+    month: 3,
+    day: 13
+  },
   apr25: {
     title: "Liberation day",
     active: true,
@@ -320,5 +325,11 @@ export const HOLIDAYS = {
     active: true,
     month: 11,
     day: 26
+  },
+  localDay: {
+    title: "Local day",
+    active: false,
+    month: 0,
+    day: 1
   }
 };
