@@ -156,6 +156,7 @@ export const config2date = (date, table, label) => {
     date.getDate(),
     hours,
     minutes
+    // TODO: Probably need to set 0
   );
 };
 
