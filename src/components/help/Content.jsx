@@ -11,7 +11,7 @@ export default function HelpContent() {
     location: { hash }
   } = useHistory();
   // TODO:
-  console.log(hash);
+  // console.log(hash);
 
   return (
     <BoxContainer>
@@ -78,7 +78,7 @@ export default function HelpContent() {
           This is the regular expression used to match the field:
         </Typography>
         <Typography component="pre" paragraph>
-          /(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/
+          /(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/
         </Typography>
       </Typography>
     </BoxContainer>
