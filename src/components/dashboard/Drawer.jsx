@@ -91,9 +91,6 @@ const DrawerItem = ({
   if (!primary) {
     console.warn("DrawerItem alert: you didn't specify a `primary` prop");
   }
-  // TODO: add primary && secondary props
-  // TODO: handle external links
-  // TODO: add a callback instead of href
   const { push } = useHistory();
 
   if (type === "divider") {
