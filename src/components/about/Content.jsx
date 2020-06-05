@@ -1,3 +1,5 @@
+// TODO: Add license info
+
 import React from "react";
 
 // import { Typography } from "@material-ui/core";
