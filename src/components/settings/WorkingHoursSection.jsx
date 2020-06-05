@@ -25,7 +25,18 @@ export default function WorkingHoursSection() {
 
       <Collapse in={!valid}>
         <Typography color="error">
-          There's an error in the configuration, please check the working hours.
+          There's an error in the configuration, please check the following:
+        </Typography>
+        <Typography component="ul" color="error">
+          <Typography component="li">
+            At least 1 interval must be active;
+          </Typography>
+          <Typography component="li">
+            Every end must be greater than the corresponding start;
+          </Typography>
+          <Typography component="li">
+            For each day evening time must be greater than morning's.
+          </Typography>
         </Typography>
       </Collapse>
 
