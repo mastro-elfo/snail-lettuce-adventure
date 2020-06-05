@@ -14,6 +14,12 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.4
+
+* Add validation of working hours;
+* Also display a message if validation fails;
+* Add "Terms" sections to help page.
+
 ### New in version 1.3
 
 * Bug fix.
