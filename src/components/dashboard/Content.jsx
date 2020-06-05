@@ -129,7 +129,7 @@ export default function DashboardContent() {
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={() => push("/help")} title="Help">
+                  <IconButton onClick={() => push("/help#sla")} title="Help">
                     <HelpIcon />
                   </IconButton>
                 </InputAdornment>
