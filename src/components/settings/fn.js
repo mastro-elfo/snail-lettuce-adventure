@@ -252,3 +252,67 @@ export const WEEK = {
     eveningEndMinute: 30
   }
 };
+
+export const HOLIDAYS = {
+  jan1: {
+    title: "First of the year",
+    active: true,
+    month: 0,
+    day: 1
+  },
+  jan6: {
+    title: "Epiphany",
+    active: true,
+    month: 0,
+    day: 6
+  },
+  // Easter monday
+  apr25: {
+    title: "Liberation day",
+    active: true,
+    month: 3,
+    day: 25
+  },
+  may1: {
+    title: "International workers' day",
+    active: true,
+    month: 4,
+    day: 1
+  },
+  nationalDay: {
+    title: "National day",
+    active: true,
+    month: 5,
+    day: 2
+  },
+  aug15: {
+    title: "Assumption of Mary",
+    active: true,
+    month: 7,
+    day: 15
+  },
+  nov1: {
+    title: "All saints",
+    active: true,
+    month: 10,
+    day: 1
+  },
+  dec8: {
+    title: "Immacolate conception",
+    active: true,
+    month: 11,
+    day: 8
+  },
+  dec25: {
+    title: "Christmas",
+    active: true,
+    month: 11,
+    day: 25
+  },
+  dec26: {
+    title: "Saint Stephen's day",
+    active: true,
+    month: 11,
+    day: 26
+  }
+};
