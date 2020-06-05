@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { Box, Checkbox, Grid, Typography } from "@material-ui/core";
+import { Box, Checkbox, Collapse, Grid, Typography } from "@material-ui/core";
 
 import { KeyboardTimePicker } from "@material-ui/pickers";
 
-import { getWeek, set as setSettings } from "./fn";
+import { getWeek, set as setSettings, validate } from "./fn";
 
 export default function WorkingHoursSection() {
   const [week, setWeek] = useState(getWeek());
@@ -17,9 +17,17 @@ export default function WorkingHoursSection() {
     setWeek({ ...week, [weekday]: config });
   };
 
+  const valid = validate(week);
+
   return (
     <Box py={1}>
       <Typography variant="h6">Working hours</Typography>
+
+      <Collapse in={!valid}>
+        <Typography color="error">
+          There's an error in the configuration, please check the working hours.
+        </Typography>
+      </Collapse>
 
       <Grid container spacing={2}>
         <Weekday
