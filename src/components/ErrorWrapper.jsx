@@ -39,7 +39,7 @@ export default class ErrorWrapper extends Component {
               <IconButton
                 color="inherit"
                 title="Refresh"
-                onClick={window.location.reload}
+                onClick={() => window.location.reload()}
               >
                 <RefreshIcon />
               </IconButton>

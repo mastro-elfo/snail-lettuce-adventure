@@ -14,6 +14,10 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.6
+
+* Fix reload button in error page not reloading;
+
 ### New in version 1.5
 
 * Fix bug: TypeError: can't set option weekday when dateStyle or timeStyle is used.
