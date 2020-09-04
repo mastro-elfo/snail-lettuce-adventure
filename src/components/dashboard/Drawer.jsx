@@ -45,7 +45,7 @@ const LISTS = [
       {
         type: "item",
         primary: "Snail Lettuce Adventure",
-        secondary: "v1.4.0",
+        secondary: "v1.5.0",
         href: "/about",
         Icon: LogoIcon
       },
