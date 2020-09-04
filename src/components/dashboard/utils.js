@@ -92,9 +92,10 @@ export const formatDate = d =>
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",
-    minute: "2-digit",
-    dateStyle: "short",
-    timeStyle: "short"
+    minute: "2-digit"
+    // Don't use these if weekday is set
+    // dateStyle: "short",
+    // timeStyle: "short"
   });
 
 /**
