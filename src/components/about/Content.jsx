@@ -16,9 +16,9 @@ export default function AboutContent() {
 const md = `
 ### New in version 1.6
 
-(to be deployed)
-
+* Fix: wrong "suspend until" evaluation when "actual date/time" is out of working hours;
 * Fix reload button in error page not reloading;
+* Update regular expression with spaces between digits and letters.
 
 ### New in version 1.5
 
