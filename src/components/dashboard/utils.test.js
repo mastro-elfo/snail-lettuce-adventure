@@ -81,6 +81,15 @@ describe("Convert sla string to dhm object", () => {
       minutes: 4
     });
   });
+
+  test("1 w 2 d 3 h 4 m", () => {
+    expect(sla2dhm("1 w 2 d 3 h 4 m")).toEqual({
+      weeks: 1,
+      days: 2,
+      hours: 3,
+      minutes: 4
+    });
+  });
 });
 
 describe("Convert dhm object to string", () => {
