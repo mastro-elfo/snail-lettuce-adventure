@@ -294,6 +294,10 @@ export const lengthEnd = (start, length, table) => {
   const eveningEnd = config2date(start, table, "eveningEnd");
   const nextStart = findNextStart(start, table);
 
+  if (!isWorking(start, table)) {
+    return lengthEnd(nextStart, length - (+nextStart - +start), table);
+  }
+
   if (morningEnd && +start <= +morningEnd) {
     const newLength = length - (+morningEnd - +start);
     if (newLength > 0) return lengthEnd(nextStart, newLength, table);
