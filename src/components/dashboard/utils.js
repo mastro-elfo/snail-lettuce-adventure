@@ -4,7 +4,6 @@
  * @return {[type]}     [description]
  */
 export const sla2dhm = sla => {
-  // TODO: Also review help/Content
   const parts = sla.match(/(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+\s*h)?\s*(\d+\s*m)?/);
   return {
     weeks: parts[1] === undefined ? 0 : parseInt(parts[1]),
