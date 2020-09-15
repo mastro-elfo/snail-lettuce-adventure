@@ -556,4 +556,30 @@ describe("Evaluate the end of a length", () => {
       )
     ).toBe("2020 01 06, Mon 12:30");
   });
+
+  test("Wednesday 2h, outside working hours", () => {
+    expect(
+      formatDate(
+        lengthEnd(new Date("2020-01-01T08:00"), 2 * 60 * 60 * 1000, WEEK)
+      )
+    ).toBe("2020 01 01, Wed 10:00");
+  });
+});
+
+describe("Test real cases", () => {
+  test("1", () => {
+    expect(
+      formatDate(
+        lengthEnd(
+          new Date("2020-09-15T14:29"),
+          evalLength(
+            new Date(dateAddDhm(new Date("2020-09-15T14:29"), sla2dhm("3h"))),
+            new Date("2020-09-18T09:29"),
+            WEEK
+          ),
+          WEEK
+        )
+      )
+    ).toBe("2020 09 17, Thu 16:29");
+  });
 });
