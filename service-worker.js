@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/snail-lettuce-adventure/precache-manifest.7be12ab45a4eee2ca61f7a162f128e75.js"
+  "/snail-lettuce-adventure/precache-manifest.0aeeeba71d39591cf68a267fa4cf35bb.js"
 );
 
 self.addEventListener('message', (event) => {
