@@ -1,18 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import Page from "../Page";
 import Header from "./Header";
 import Content from "./Content";
 import Drawer from "./Drawer";
 
-export default function DashboardView() {
-  const [open, setOpen] = useState(false);
+import useNotifyVersion from "./useNotifyVersion";
 
-  useEffect(() => {
-    // on load
-    // e.g. document.title = "..."
-    return () => {};
-  }, []);
+export default function DashboardView() {
+  useNotifyVersion();
+  const [open, setOpen] = useState(false);
 
   return (
     <Page
