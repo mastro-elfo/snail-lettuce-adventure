@@ -18,6 +18,8 @@ import HelpIcon from "@material-ui/icons/Help";
 import LogoIcon from "../Logo";
 import SettingsIcon from "@material-ui/icons/Settings";
 
+import { version } from "../version";
+
 const LISTS = [
   // {
   //   header: "ListSubheader",
@@ -45,7 +47,7 @@ const LISTS = [
       {
         type: "item",
         primary: "Snail Lettuce Adventure",
-        secondary: "v1.6.0",
+        secondary: `v${version.join(".")}`,
         href: "/about",
         Icon: LogoIcon
       },
