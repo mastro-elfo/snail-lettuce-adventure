@@ -14,6 +14,11 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.6.1
+
+* Notify when a new version is released and installed;
+* A new beautiful icon.
+
 ### New in version 1.6
 
 * Fix: wrong "suspend until" evaluation when "actual date/time" is out of working hours;
