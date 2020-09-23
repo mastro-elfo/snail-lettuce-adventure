@@ -1,3 +1,6 @@
+// TODO: There are issues after adding i18n
+// TODO: check yarn test
+
 import i18n from "../../i18n";
 
 /**
