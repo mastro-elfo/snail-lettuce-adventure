@@ -1,3 +1,5 @@
+import i18n from "../../i18n";
+
 /**
  * Converts a string into an object matching this regex: `/(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/`
  * @param  {[type]} sla [description]
@@ -38,12 +40,40 @@ export const dhm2str = dhm => {
   // The rest are minutes
   const minutes = rest % 60;
   // Create the list of parts
-  if (weeks) parts.push(dhmline(weeks, "week", "weeks"));
-  if (days) parts.push(dhmline(days, "day", "days"));
-  if (hours) parts.push(dhmline(hours, "hour", "hours"));
-  if (minutes) parts.push(dhmline(minutes, "minute", "minutes"));
+  if (weeks)
+    parts.push(
+      dhmline(
+        weeks,
+        i18n.t("dashboard:utils.week"),
+        i18n.t("dashboard:utils.weeks")
+      )
+    );
+  if (days)
+    parts.push(
+      dhmline(
+        days,
+        i18n.t("dashboard:utils.day"),
+        i18n.t("dashboard:utils.days")
+      )
+    );
+  if (hours)
+    parts.push(
+      dhmline(
+        hours,
+        i18n.t("dashboard:utils.hour"),
+        i18n.t("dashboard:utils.hours")
+      )
+    );
+  if (minutes)
+    parts.push(
+      dhmline(
+        minutes,
+        i18n.t("dashboard:utils.minute"),
+        i18n.t("dashboard:utils.minutes")
+      )
+    );
   // Join everything
-  return andJoin(parts, ", ", " and ");
+  return andJoin(parts, ", ", ` ${i18n.t("common:and")} `);
 };
 
 /**

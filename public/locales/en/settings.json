@@ -1,0 +1,17 @@
+{
+  "WorkingHoursSection": {
+    "Working hours": "Working hours",
+    "errors": {
+      "1": "There's an error in the configuration, please check the following:",
+      "2": "At least 1 interval must be active;",
+      "3": "Every end must be greater than the corresponding start;",
+      "4": "For each day evening time must be greater than morning's."
+    },
+    "Weekday": {
+      "Start": "Start",
+      "End": "End",
+      "morning": "morning",
+      "evening": "evening"
+    }
+  }
+}

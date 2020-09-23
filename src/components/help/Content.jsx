@@ -1,17 +1,20 @@
 import React from "react";
 
+import { useTranslation } from "react-i18next";
+
 import { Button, Typography } from "@material-ui/core";
 
 import BoxContainer from "../BoxContainer";
 import HashSection from "../HashSection";
 
 export default function HelpContent() {
+  const { t } = useTranslation(["common", "help"]);
   return (
     <BoxContainer>
       <HashSection filter="terms">
-        <Typography variant="h6">Terms</Typography>
+        <Typography variant="h6">{t("Terms")}</Typography>
         <Typography paragraph>
-          "SLA" is the service level agreement.{" "}
+          {t("help:Content.part1")}{" "}
           <Button
             variant="outlined"
             color="secondary"
@@ -22,61 +25,52 @@ export default function HelpContent() {
                 "_Wikipedia"
               )
             }
-            title="Read about SLA on Wikipedia"
+            title={t("help:Content.Read about SLA on Wikipedia")}
           >
-            Read more
+            {t("Read more")}
           </Button>
         </Typography>
 
-        <Typography paragraph>
-          "Remaining SLA" the time left before the current phase expires.
-        </Typography>
+        <Typography paragraph>{t("help:Content.part2")}</Typography>
 
-        <Typography paragraph>
-          "Expiry date and time" is the moment when the current phase expires.
-          It's simply the sum of actual date/time and the remaining SLA.
-        </Typography>
+        <Typography paragraph>{t("help:Content.part3")}</Typography>
 
-        <Typography paragraph>
-          "Request expiry date/time" is the moment when the user wants the
-          current phase to expire. This should be after the actual expiry
-          date/time and within working hours.
-        </Typography>
+        <Typography paragraph>{t("help:Content.part4")}</Typography>
 
-        <Typography paragraph>
-          "Suspend until" is the evaluated moment until a phase should be
-          suspended in order to expire at the desired moment.
-        </Typography>
+        <Typography paragraph>{t("help:Content.part5")}</Typography>
       </HashSection>
 
       <HashSection filter="sla">
-        <Typography variant="h6">Fill "Remaining SLA" field</Typography>
-        <Typography paragraph>
-          This field accepts input in the form "#w #d #h #m" to set in order
-          weeks, days, hours and minutes. Put the requested value in place of
-          each "#". Each field is optional, but the order is important, see the
-          following examples:
+        <Typography variant="h6">
+          {t("help:Content.Fill Remaining SLA field")}
         </Typography>
+        <Typography paragraph>{t("help:Content.part6")}</Typography>
 
         <Typography component="ul" paragraph>
-          <Typography component="li">1 week: "1w"</Typography>
-          <Typography component="li">1 day: "1d"</Typography>
-          <Typography component="li">1 day and 4 hours: "1d 4h"</Typography>
-          <Typography component="li">1 day and 30 minutes: "1d 30m"</Typography>
+          <Typography component="li">{t("help:Content.1 week")}</Typography>
+          <Typography component="li">{t("help:Content.1 day")}</Typography>
           <Typography component="li">
-            1 day and 4 hours and 30 minutes: "1d 4h 30m"
+            {t("help:Content.1 day and 4 hours")}
           </Typography>
           <Typography component="li">
-            4 hours and 30 minutes: "4h 30m"
+            {t("help:Content.1 day and 30 minutes")}
+          </Typography>
+          <Typography component="li">
+            {t("help:Content.1 day and 4 hours and 30 minutes")}
+          </Typography>
+          <Typography component="li">
+            {t("help:Content.4 hours and 30 minutes")}
           </Typography>
         </Typography>
 
         <Typography component="div" paragraph>
           <Typography>
-            This is the regular expression used to match the field:
+            {t(
+              "help:Content.This is the regular expression used to match the field"
+            )}
           </Typography>
           <Typography component="pre" paragraph>
-            /(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+\s*h)?\s*(\d+\s*m)?/
+            {t("help:Content.regexp")}
           </Typography>
         </Typography>
       </HashSection>

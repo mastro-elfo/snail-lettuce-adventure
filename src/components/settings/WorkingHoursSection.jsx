@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 
+import { useTranslation } from "react-i18next";
+
 import { Box, Checkbox, Collapse, Grid, Typography } from "@material-ui/core";
 
 import { KeyboardTimePicker } from "@material-ui/pickers";
@@ -7,6 +9,8 @@ import { KeyboardTimePicker } from "@material-ui/pickers";
 import { getWeek, set as setSettings, validate } from "./fn";
 
 export default function WorkingHoursSection() {
+  const { t } = useTranslation("settings");
+
   const [week, setWeek] = useState(getWeek());
 
   useEffect(() => {
@@ -21,21 +25,23 @@ export default function WorkingHoursSection() {
 
   return (
     <Box py={1}>
-      <Typography variant="h6">Working hours</Typography>
+      <Typography variant="h6">
+        {t("WorkingHoursSection.Working hours")}
+      </Typography>
 
       <Collapse in={!valid}>
         <Typography color="error">
-          There's an error in the configuration, please check the following:
+          {t("WorkingHoursSection.errors.1")}
         </Typography>
         <Typography component="ul" color="error">
           <Typography component="li">
-            At least 1 interval must be active;
+            {t("WorkingHoursSection.errors.2")}
           </Typography>
           <Typography component="li">
-            Every end must be greater than the corresponding start;
+            {t("WorkingHoursSection.errors.3")}
           </Typography>
           <Typography component="li">
-            For each day evening time must be greater than morning's.
+            {t("WorkingHoursSection.errors.4")}
           </Typography>
         </Typography>
       </Collapse>
@@ -81,17 +87,19 @@ export default function WorkingHoursSection() {
   );
 }
 
-const LABELS = {
-  monday: "monday",
-  tuesday: "tuesday",
-  wednesday: "wednesday",
-  thursday: "thursday",
-  friday: "friday",
-  saturday: "saturday",
-  sunday: "sunday"
-};
+// const LABELS = {
+//   monday: "monday",
+//   tuesday: "tuesday",
+//   wednesday: "wednesday",
+//   thursday: "thursday",
+//   friday: "friday",
+//   saturday: "saturday",
+//   sunday: "sunday"
+// };
 
 const Weekday = ({ config, weekday, onChange }) => {
+  const { t } = useTranslation(["settings", "weekdays"]);
+
   const handleChange = value => {
     onChange(weekday, {
       ...config,
@@ -119,14 +127,18 @@ const Weekday = ({ config, weekday, onChange }) => {
       <Grid item container alignItems="center" xs={12} sm={5}>
         <Item
           id="morningStart"
-          label={`Start ${LABELS[weekday]} morning`}
+          label={`${t("settings:WorkingHoursSection.Weekday.Start")} ${t(
+            `weekdays:${weekday}`
+          )} ${t("settings:WorkingHoursSection.Weekday.morning")}`}
           value={new Date(`2020-01-01T${morningStart}`)}
           disabled={!morning}
           onChange={handleChange}
         />
         <Item
           id="morningEnd"
-          label={`End ${LABELS[weekday]} morning`}
+          label={`${t("settings:WorkingHoursSection.Weekday.End")} ${t(
+            `weekdays:${weekday}`
+          )} ${t("settings:WorkingHoursSection.Weekday.morning")}`}
           value={new Date(`2020-01-01T${morningEnd}`)}
           disabled={!morning}
           onChange={handleChange}
@@ -141,14 +153,18 @@ const Weekday = ({ config, weekday, onChange }) => {
       <Grid item container alignItems="center" xs={12} sm={5}>
         <Item
           id="eveningStart"
-          label={`Start ${LABELS[weekday]} evening`}
+          label={`${t("settings:WorkingHoursSection.Weekday.Start")} ${t(
+            `weekdays:${weekday}`
+          )} ${t("settings:WorkingHoursSection.Weekday.evening")}`}
           value={new Date(`2020-01-01T${eveningStart}`)}
           disabled={!evening}
           onChange={handleChange}
         />
         <Item
           id="eveningEnd"
-          label={`End ${LABELS[weekday]} evening`}
+          label={`${t("settings:WorkingHoursSection.Weekday.End")} ${t(
+            `weekdays:${weekday}`
+          )} ${t("settings:WorkingHoursSection.Weekday.evening")}`}
           value={new Date(`2020-01-01T${eveningEnd}`)}
           disabled={!evening}
           onChange={handleChange}

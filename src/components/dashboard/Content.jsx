@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import DateFnsUtils from "@date-io/date-fns";
 import itLocale from "date-fns/locale/it";
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import {
   IconButton,
@@ -37,6 +38,7 @@ import ReplayIcon from "@material-ui/icons/Replay";
 
 export default function DashboardContent() {
   const { push } = useHistory();
+  const { t } = useTranslation(["common", "dashboard"]);
 
   // SLA input value
   // Syntax: /(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/
@@ -101,8 +103,8 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={formatDate(now)}
-            secondary={`Actual date and time ${
-              nowIsWorking ? "" : "is out of working hours"
+            secondary={`${t("dashboard:Content.now.part1")} ${
+              nowIsWorking ? "" : t("dashboard:Content.now.part2")
             }`}
             primaryTypographyProps={{
               ...(nowIsWorking ? null : { color: "error" })
@@ -112,7 +114,7 @@ export default function DashboardContent() {
             }}
           />
           <ListItemSecondaryAction>
-            <IconButton title="Reload" onClick={handleReloadNow}>
+            <IconButton title={t("common:Reload")} onClick={handleReloadNow}>
               <ReplayIcon />
             </IconButton>
           </ListItemSecondaryAction>
@@ -121,15 +123,18 @@ export default function DashboardContent() {
         <ListItem>
           <TextField
             fullWidth
-            label="Remaining SLA"
-            placeholder="E.g. 1d 4h 30"
+            label={t("dashboard:Content.sla.label")}
+            placeholder={t("dashboard:Content.sla.placeholder")}
             value={sla}
             helperText={dhm2str(dhm)}
             onChange={({ target: { value } }) => setSla(value)}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end">
-                  <IconButton onClick={() => push("/help#sla")} title="Help">
+                  <IconButton
+                    onClick={() => push("/help#sla")}
+                    title={t("common:Help")}
+                  >
                     <HelpIcon />
                   </IconButton>
                 </InputAdornment>
@@ -141,8 +146,8 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={expiry ? formatDate(expiry) : ""}
-            secondary={`Expiry date and time ${
-              expiryIsWorking ? "" : "is out of working hours"
+            secondary={`${t("dashboard:Content.expiry.part1")} ${
+              expiryIsWorking ? "" : t("dashboard:Content.expiry.part2")
             }`}
             primaryTypographyProps={{
               ...(expiryIsWorking ? null : { color: "error" })
@@ -158,13 +163,15 @@ export default function DashboardContent() {
             <KeyboardDateTimePicker
               fullWidth
               ampm={false}
-              label="Request expiry date/time"
+              label={t("dashboard:Content.request.label")}
               format="dd/MM/yyyy HH:mm"
               value={request}
               onChange={r => setRequest(r)}
               error={+request < +expiry}
               helperText={
-                +request < +expiry ? "Request is lower than expiry" : ""
+                +request < +expiry
+                  ? t("dashboard:Content.request.helperText")
+                  : ""
               }
             />
           </MuiPickersUtilsProvider>
@@ -173,11 +180,11 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={formatDate(until)}
-            secondary={`Suspend until ${
+            secondary={`${t("dashboard:Content.until.part1")} ${
               untilIsGreaterThanRequest
-                ? "is greater than request"
+                ? t("dashboard:Content.until.part2")
                 : !untilIsWorking
-                ? "is out of working hours"
+                ? t("dashboard:Content.until.part3")
                 : ""
             }`}
             primaryTypographyProps={{
