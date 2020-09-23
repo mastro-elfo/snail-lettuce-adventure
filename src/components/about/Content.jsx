@@ -1,7 +1,5 @@
 import React from "react";
 
-// import { Typography } from "@material-ui/core";
-
 import BoxContainer from "../BoxContainer";
 import Markdown from "../Markdown";
 
@@ -16,6 +14,7 @@ export default function AboutContent() {
 const md = `
 ### New in version 1.7.0
 
+* Add translations;
 * Register service worker: SLA now works offline.
 
 ### New in version 1.6.1
