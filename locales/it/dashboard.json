@@ -1,0 +1,46 @@
+{
+  "Header": "Dashboard",
+  "Content": {
+    "now": {
+      "part1": "Data e ora attuali",
+      "part2": "è oltre l'orario di lavoro"
+    },
+    "sla": {
+      "label": "SLA residuo",
+      "placeholder": "Es. 1d 4h 30"
+    },
+    "expiry": {
+      "part1": "Data e ora di scadenza",
+      "part2": "è oltre l'orario di lavoro"
+    },
+    "request": {
+      "label": "Scadenza richiesta",
+      "format": "dd/MM/yyyy HH:mm",
+      "helperText": "La richiesta è antecedente alla scadenza"
+    },
+    "until": {
+      "part1": "Sospendi fino",
+      "part2": "è maggiore della richiesta",
+      "part3": "è oltre l'orario di lavoro"
+    }
+  },
+  "useNotifyVersion": {
+    "New version": "New Version"
+  },
+  "utils": {
+    "week": "settimana",
+    "weeks": "settimane",
+    "day": "giorno",
+    "days": "giorni",
+    "hour": "ora",
+    "hours": "ore",
+    "minute": "minuto",
+    "minutes": "minuti"
+  },
+  "Drawer": {
+    "settings": "Impostazioni",
+    "help": "Aiuto",
+    "sla": "Snail Lettuce Adventure",
+    "github": "Apri Repository"
+  }
+}

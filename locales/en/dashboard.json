@@ -1,0 +1,46 @@
+{
+  "Header": "Dashboard",
+  "Content": {
+    "now": {
+      "part1": "Actual date and time",
+      "part2": "is out of working hours"
+    },
+    "sla": {
+      "label": "Remaining SLA",
+      "placeholder": "E.g. 1d 4h 30"
+    },
+    "expiry": {
+      "part1": "Expiry date and time",
+      "part2": "is out of working hours"
+    },
+    "request": {
+      "label": "Request expiry date/time",
+      "format": "dd/MM/yyyy HH:mm",
+      "helperText": "Request is lower than expiry"
+    },
+    "until": {
+      "part1": "Suspend until",
+      "part2": "is greater than request",
+      "part3": "is out of working hours"
+    }
+  },
+  "useNotifyVersion": {
+    "New version": "New Version"
+  },
+  "utils": {
+    "week": "week",
+    "weeks": "weeks",
+    "day": "day",
+    "days": "days",
+    "hour": "hour",
+    "hours": "hours",
+    "minute": "minute",
+    "minutes": "minutes"
+  },
+  "Drawer": {
+    "settings": "Settings",
+    "help": "Help",
+    "sla": "Snail Lettuce Adventure",
+    "github": "Open Repository"
+  }
+}
