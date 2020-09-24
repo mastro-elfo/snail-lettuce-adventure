@@ -12,6 +12,10 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.7.1
+
+* Disable i18n debug.
+
 ### New in version 1.7.0
 
 * Add translations;
