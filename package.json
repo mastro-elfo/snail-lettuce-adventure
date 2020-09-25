@@ -30,7 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --testMatch \"**/src/**/*.test.js\"",
     "eject": "react-scripts eject",
-    "predeploy": "yarn run test-all && yarn run test-serviceWorker && yarn run test-i18n-debug && yarn run build",
+    "predeploy": "yarn run test-all && yarn run test-i18n-debug && yarn run build",
     "deploy": "gh-pages -d build",
     "test-all": "react-scripts test --all --watchAll=false",
     "test-serviceWorker": "cat src/index.js | grep ^serviceWorker\\.register\\(\\);",
