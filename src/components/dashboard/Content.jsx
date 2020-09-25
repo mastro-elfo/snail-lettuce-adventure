@@ -38,7 +38,7 @@ import ReplayIcon from "@material-ui/icons/Replay";
 
 export default function DashboardContent() {
   const { push } = useHistory();
-  const { t } = useTranslation(["common", "dashboard"]);
+  const { t } = useTranslation();
 
   // SLA input value
   // Syntax: /(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/
@@ -103,8 +103,8 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={formatDate(now)}
-            secondary={`${t("dashboard:Content.now.part1")} ${
-              nowIsWorking ? "" : t("dashboard:Content.now.part2")
+            secondary={`${t("Dashboard.Content.now.part1")} ${
+              nowIsWorking ? "" : t("Dashboard.Content.now.part2")
             }`}
             primaryTypographyProps={{
               ...(nowIsWorking ? null : { color: "error" })
@@ -114,7 +114,7 @@ export default function DashboardContent() {
             }}
           />
           <ListItemSecondaryAction>
-            <IconButton title={t("common:Reload")} onClick={handleReloadNow}>
+            <IconButton title={t("Reload")} onClick={handleReloadNow}>
               <ReplayIcon />
             </IconButton>
           </ListItemSecondaryAction>
@@ -123,8 +123,8 @@ export default function DashboardContent() {
         <ListItem>
           <TextField
             fullWidth
-            label={t("dashboard:Content.sla.label")}
-            placeholder={t("dashboard:Content.sla.placeholder")}
+            label={t("Dashboard.Content.sla.label")}
+            placeholder={t("Dashboard.Content.sla.placeholder")}
             value={sla}
             helperText={dhm2str(dhm)}
             onChange={({ target: { value } }) => setSla(value)}
@@ -133,7 +133,7 @@ export default function DashboardContent() {
                 <InputAdornment position="end">
                   <IconButton
                     onClick={() => push("/help#sla")}
-                    title={t("common:Help")}
+                    title={t("HelpLabel")}
                   >
                     <HelpIcon />
                   </IconButton>
@@ -146,8 +146,8 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={expiry ? formatDate(expiry) : ""}
-            secondary={`${t("dashboard:Content.expiry.part1")} ${
-              expiryIsWorking ? "" : t("dashboard:Content.expiry.part2")
+            secondary={`${t("Dashboard.Content.expiry.part1")} ${
+              expiryIsWorking ? "" : t("Dashboard.Content.expiry.part2")
             }`}
             primaryTypographyProps={{
               ...(expiryIsWorking ? null : { color: "error" })
@@ -163,14 +163,14 @@ export default function DashboardContent() {
             <KeyboardDateTimePicker
               fullWidth
               ampm={false}
-              label={t("dashboard:Content.request.label")}
+              label={t("Dashboard.Content.request.label")}
               format="dd/MM/yyyy HH:mm"
               value={request}
               onChange={r => setRequest(r)}
               error={+request < +expiry}
               helperText={
                 +request < +expiry
-                  ? t("dashboard:Content.request.helperText")
+                  ? t("Dashboard.Content.request.helperText")
                   : ""
               }
             />
@@ -180,11 +180,11 @@ export default function DashboardContent() {
         <ListItem>
           <ListItemText
             primary={formatDate(until)}
-            secondary={`${t("dashboard:Content.until.part1")} ${
+            secondary={`${t("Dashboard.Content.until.part1")} ${
               untilIsGreaterThanRequest
-                ? t("dashboard:Content.until.part2")
+                ? t("Dashboard.Content.until.part2")
                 : !untilIsWorking
-                ? t("dashboard:Content.until.part3")
+                ? t("Dashboard.Content.until.part3")
                 : ""
             }`}
             primaryTypographyProps={{

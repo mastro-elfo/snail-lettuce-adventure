@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 
 import { useHistory } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 import { AppBar, Toolbar, IconButton } from "@material-ui/core";
 
@@ -10,6 +11,8 @@ import GrowTypography from "../GrowTypography";
 
 export default function SettingsHeader() {
   const { goBack } = useHistory();
+  const { t } = useTranslation();
+
   return (
     <Fragment>
       <AppBar>
@@ -18,7 +21,7 @@ export default function SettingsHeader() {
             <ArrowBackIcon />
           </IconButton>
           <GrowTypography variant="h6" color="inherit">
-            Settings
+            {t("Settings.Header")}
           </GrowTypography>
         </Toolbar>
       </AppBar>

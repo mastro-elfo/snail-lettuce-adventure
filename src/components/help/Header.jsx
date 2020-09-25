@@ -11,7 +11,7 @@ import GrowTypography from "../GrowTypography";
 
 export default function HelpHeader() {
   const { goBack } = useHistory();
-  const { t } = useTranslation(["common", "help"]);
+  const { t } = useTranslation();
 
   return (
     <Fragment>
@@ -19,13 +19,13 @@ export default function HelpHeader() {
         <Toolbar>
           <IconButton
             color="inherit"
-            title={t("common:Go Back")}
+            title={t("Go Back")}
             onClick={() => goBack()}
           >
             <ArrowBackIcon />
           </IconButton>
           <GrowTypography variant="h6" color="inherit">
-            {t("help:Header")}
+            {t("Help.Header")}
           </GrowTypography>
         </Toolbar>
       </AppBar>

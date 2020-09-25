@@ -13,7 +13,7 @@ import { version } from "../version";
 export default function useNotifyVersion() {
   const { closeSnackbar, enqueueSnackbar } = useSnackbar();
   const { push } = useHistory();
-  const { t } = useTranslation(["common", "dashboard"]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const to = setTimeout(() => {
@@ -22,14 +22,14 @@ export default function useNotifyVersion() {
       if (storedVersion !== joinVersion) {
         localStorage.setItem("version", joinVersion);
         enqueueSnackbar(
-          `${t("dashboard:useNotifyVersion.New version")} v${joinVersion}`,
+          `${t("Dashboard.useNotifyVersion.New version")} v${joinVersion}`,
           {
             variant: "info",
             action: key => (
               <Fragment>
                 <Button
                   color="inherit"
-                  title={t("common:More")}
+                  title={t("More")}
                   onClick={() => {
                     closeSnackbar(key);
                     push("/about");
@@ -39,7 +39,7 @@ export default function useNotifyVersion() {
                 </Button>
                 <IconButton
                   color="inherit"
-                  title={t("common:Dismiss")}
+                  title={t("Dismiss")}
                   onClick={() => {
                     closeSnackbar(key);
                   }}

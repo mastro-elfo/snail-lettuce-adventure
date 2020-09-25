@@ -9,7 +9,7 @@ import { KeyboardTimePicker } from "@material-ui/pickers";
 import { getWeek, set as setSettings, validate } from "./fn";
 
 export default function WorkingHoursSection() {
-  const { t } = useTranslation("settings");
+  const { t } = useTranslation();
 
   const [week, setWeek] = useState(getWeek());
 
@@ -26,22 +26,22 @@ export default function WorkingHoursSection() {
   return (
     <Box py={1}>
       <Typography variant="h6">
-        {t("WorkingHoursSection.Working hours")}
+        {t("Settings.WorkingHoursSection.Working hours")}
       </Typography>
 
       <Collapse in={!valid}>
         <Typography color="error">
-          {t("WorkingHoursSection.errors.1")}
+          {t("Settings.WorkingHoursSection.errors.1")}
         </Typography>
         <Typography component="ul" color="error">
           <Typography component="li">
-            {t("WorkingHoursSection.errors.2")}
+            {t("Settings.WorkingHoursSection.errors.2")}
           </Typography>
           <Typography component="li">
-            {t("WorkingHoursSection.errors.3")}
+            {t("Settings.WorkingHoursSection.errors.3")}
           </Typography>
           <Typography component="li">
-            {t("WorkingHoursSection.errors.4")}
+            {t("Settings.WorkingHoursSection.errors.4")}
           </Typography>
         </Typography>
       </Collapse>
@@ -98,7 +98,7 @@ export default function WorkingHoursSection() {
 // };
 
 const Weekday = ({ config, weekday, onChange }) => {
-  const { t } = useTranslation(["settings", "weekdays"]);
+  const { t } = useTranslation();
 
   const handleChange = value => {
     onChange(weekday, {
@@ -127,18 +127,18 @@ const Weekday = ({ config, weekday, onChange }) => {
       <Grid item container alignItems="center" xs={12} sm={5}>
         <Item
           id="morningStart"
-          label={`${t("settings:WorkingHoursSection.Weekday.Start")} ${t(
-            `weekdays:${weekday}`
-          )} ${t("settings:WorkingHoursSection.Weekday.morning")}`}
+          label={`${t("Settings.WorkingHoursSection.Weekday.Start")} ${t(
+            weekday
+          )} ${t("Settings.WorkingHoursSection.Weekday.morning")}`}
           value={new Date(`2020-01-01T${morningStart}`)}
           disabled={!morning}
           onChange={handleChange}
         />
         <Item
           id="morningEnd"
-          label={`${t("settings:WorkingHoursSection.Weekday.End")} ${t(
-            `weekdays:${weekday}`
-          )} ${t("settings:WorkingHoursSection.Weekday.morning")}`}
+          label={`${t("Settings.WorkingHoursSection.Weekday.End")} ${t(
+            weekday
+          )} ${t("Settings.WorkingHoursSection.Weekday.morning")}`}
           value={new Date(`2020-01-01T${morningEnd}`)}
           disabled={!morning}
           onChange={handleChange}
@@ -153,18 +153,18 @@ const Weekday = ({ config, weekday, onChange }) => {
       <Grid item container alignItems="center" xs={12} sm={5}>
         <Item
           id="eveningStart"
-          label={`${t("settings:WorkingHoursSection.Weekday.Start")} ${t(
-            `weekdays:${weekday}`
-          )} ${t("settings:WorkingHoursSection.Weekday.evening")}`}
+          label={`${t("Settings.WorkingHoursSection.Weekday.Start")} ${t(
+            weekday
+          )} ${t("Settings.WorkingHoursSection.Weekday.evening")}`}
           value={new Date(`2020-01-01T${eveningStart}`)}
           disabled={!evening}
           onChange={handleChange}
         />
         <Item
           id="eveningEnd"
-          label={`${t("settings:WorkingHoursSection.Weekday.End")} ${t(
-            `weekdays:${weekday}`
-          )} ${t("settings:WorkingHoursSection.Weekday.evening")}`}
+          label={`${t("Settings.WorkingHoursSection.Weekday.End")} ${t(
+            weekday
+          )} ${t("Settings.WorkingHoursSection.Weekday.evening")}`}
           value={new Date(`2020-01-01T${eveningEnd}`)}
           disabled={!evening}
           onChange={handleChange}

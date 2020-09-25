@@ -47,32 +47,32 @@ export const dhm2str = dhm => {
     parts.push(
       dhmline(
         weeks,
-        i18n.t("dashboard:utils.week"),
-        i18n.t("dashboard:utils.weeks")
+        i18n.t("Dashboard.utils.week"),
+        i18n.t("Dashboard.utils.weeks")
       )
     );
   if (days)
     parts.push(
       dhmline(
         days,
-        i18n.t("dashboard:utils.day"),
-        i18n.t("dashboard:utils.days")
+        i18n.t("Dashboard.utils.day"),
+        i18n.t("Dashboard.utils.days")
       )
     );
   if (hours)
     parts.push(
       dhmline(
         hours,
-        i18n.t("dashboard:utils.hour"),
-        i18n.t("dashboard:utils.hours")
+        i18n.t("Dashboard.utils.hour"),
+        i18n.t("Dashboard.utils.hours")
       )
     );
   if (minutes)
     parts.push(
       dhmline(
         minutes,
-        i18n.t("dashboard:utils.minute"),
-        i18n.t("dashboard:utils.minutes")
+        i18n.t("Dashboard.utils.minute"),
+        i18n.t("Dashboard.utils.minutes")
       )
     );
   // Join everything

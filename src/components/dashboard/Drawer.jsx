@@ -21,82 +21,39 @@ import SettingsIcon from "@material-ui/icons/Settings";
 
 import { version } from "../version";
 
-// const LISTS = [
-//   // {
-//   //   header: "ListSubheader",
-//   //   items: [
-//   // {type: 'divider'},
-//   // {type: 'item', title: 'ItemName', href: '/', primary: '', secondary: '', Icon: IconName}
-//   // ]
-//   // }
-//   {
-//     items: [
-//       {
-//         type: "item",
-//         title: i18n.t("dashboard:Drawer.settings"),
-//         primary: i18n.t("dashboard:Drawer.settings"),
-//         href: "/settings",
-//         Icon: SettingsIcon
-//       },
-//       {
-//         type: "item",
-//         title: i18n.t("dashboard:Drawer.help"),
-//         primary: i18n.t("dashboard:Drawer.help"),
-//         href: "/help",
-//         Icon: HelpIcon
-//       },
-//       {
-//         type: "item",
-//         primary: i18n.t("dashboard:Drawer.sla"),
-//         secondary: `v${version.join(".")}`,
-//         href: "/about",
-//         Icon: LogoIcon
-//       },
-//       {
-//         type: "item",
-//         title: i18n.t("dashboard:Drawer.github"),
-//         href: "https://github.com/mastro-elfo/snail-lettuce-adventure",
-//         primary: "mastro-elfo",
-//         secondary: "GitHub",
-//         Icon: GitHubIcon
-//       }
-//     ]
-//   }
-// ];
-
 const LARGER = false;
 
 export default function DashboardDrawer({ open, onClose, onOpen }) {
-  const { t } = useTranslation("dashboard");
+  const { t } = useTranslation();
 
   const LISTS = [
     {
       items: [
         {
           type: "item",
-          title: t("dashboard:Drawer.settings"),
-          primary: t("dashboard:Drawer.settings"),
+          title: t("Dashboard.Drawer.settings"),
+          primary: t("Dashboard.Drawer.settings"),
           href: "/settings",
           Icon: SettingsIcon
         },
         {
           type: "item",
-          title: t("dashboard:Drawer.help"),
-          primary: t("dashboard:Drawer.help"),
+          title: t("Dashboard.Drawer.help"),
+          primary: t("Dashboard.Drawer.help"),
           href: "/help",
           Icon: HelpIcon
         },
         {
           type: "item",
-          title: t("dashboard:Drawer.sla"),
-          primary: t("dashboard:Drawer.sla"),
+          title: t("Dashboard.Drawer.sla"),
+          primary: t("Dashboard.Drawer.sla"),
           secondary: `v${version.join(".")}`,
           href: "/about",
           Icon: LogoIcon
         },
         {
           type: "item",
-          title: t("dashboard:Drawer.github"),
+          title: t("Dashboard.Drawer.github"),
           href: "https://github.com/mastro-elfo/snail-lettuce-adventure",
           primary: "mastro-elfo",
           secondary: "GitHub",
