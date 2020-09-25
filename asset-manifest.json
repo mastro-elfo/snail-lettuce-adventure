@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/snail-lettuce-adventure/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/snail-lettuce-adventure/static/js/main.1f828679.chunk.js",
-    "main.js.map": "/snail-lettuce-adventure/static/js/main.1f828679.chunk.js.map",
+    "main.js": "/snail-lettuce-adventure/static/js/main.dd17973d.chunk.js",
+    "main.js.map": "/snail-lettuce-adventure/static/js/main.dd17973d.chunk.js.map",
     "runtime-main.js": "/snail-lettuce-adventure/static/js/runtime-main.564852aa.js",
     "runtime-main.js.map": "/snail-lettuce-adventure/static/js/runtime-main.564852aa.js.map",
     "static/js/2.a8ca4f55.chunk.js": "/snail-lettuce-adventure/static/js/2.a8ca4f55.chunk.js",
     "static/js/2.a8ca4f55.chunk.js.map": "/snail-lettuce-adventure/static/js/2.a8ca4f55.chunk.js.map",
     "index.html": "/snail-lettuce-adventure/index.html",
-    "precache-manifest.71762dfc15064694e2e587559bb236cb.js": "/snail-lettuce-adventure/precache-manifest.71762dfc15064694e2e587559bb236cb.js",
+    "precache-manifest.d5900fdb04aecdf74b069e803e148e4d.js": "/snail-lettuce-adventure/precache-manifest.d5900fdb04aecdf74b069e803e148e4d.js",
     "service-worker.js": "/snail-lettuce-adventure/service-worker.js",
     "static/css/main.5ecd60fb.chunk.css.map": "/snail-lettuce-adventure/static/css/main.5ecd60fb.chunk.css.map",
     "static/js/2.a8ca4f55.chunk.js.LICENSE.txt": "/snail-lettuce-adventure/static/js/2.a8ca4f55.chunk.js.LICENSE.txt",
@@ -19,6 +19,6 @@
     "static/js/runtime-main.564852aa.js",
     "static/js/2.a8ca4f55.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.1f828679.chunk.js"
+    "static/js/main.dd17973d.chunk.js"
   ]
 }
