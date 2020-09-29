@@ -76,7 +76,7 @@ export const dhm2str = dhm => {
       )
     );
   // Join everything
-  return andJoin(parts, ", ", ` ${i18n.t("common:and")} `);
+  return andJoin(parts, ", ", ` ${i18n.t("and")} `);
 };
 
 /**
