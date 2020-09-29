@@ -1,0 +1,112 @@
+{
+  "translation": {
+    "About": {
+      "Header": "Informazioni"
+    },
+
+    "Dashboard": {
+      "Header": "Dashboard",
+      "Content": {
+        "now": {
+          "part1": "Data e ora attuale",
+          "part2": "è oltre l'orario di lavoro"
+        },
+        "sla": {
+          "label": "SLA residuo",
+          "placeholder": "Es. 1d 4h 30"
+        },
+        "expiry": {
+          "part1": "Data e ora di scadenza",
+          "part2": "è oltre l'orario di lavoro"
+        },
+        "request": {
+          "label": "Scadenza richiesta",
+          "format": "dd/MM/yyyy HH:mm",
+          "helperText": "La richiesta è antecedente alla scadenza"
+        },
+        "until": {
+          "part1": "Sospendi fino a",
+          "part2": "è maggiore della richiesta",
+          "part3": "è oltre l'orario di lavoro"
+        }
+      },
+      "useNotifyVersion": {
+        "New version": "Nuova versione"
+      },
+      "utils": {
+        "week": "settimana",
+        "weeks": "settimane",
+        "day": "giorno",
+        "days": "giorni",
+        "hour": "ora",
+        "hours": "ore",
+        "minute": "minuto",
+        "minutes": "minuti"
+      },
+      "Drawer": {
+        "settings": "Impostazioni",
+        "help": "Aiuto",
+        "sla": "Snail Lettuce Adventure",
+        "github": "Apri Repository"
+      }
+    },
+
+    "Help": {
+      "Header": "Aiuto",
+      "Content": {
+        "Terms": "Termini",
+        "part1": "\"SLA\" è l'acronimo di Service Level Agreement.",
+        "Read about SLA on Wikipedia": "Approfondisci su Wikipedia",
+        "part2": "\"SLA Residuo\" è il tempo residuo prima che la fase corrente scada.",
+        "part3": "\"Data e ora di scadenza\" è la somma fra la data e ora attuali e lo SLA residuo.",
+        "part4": "\"Scadenza richiesta\" è la data e ora di scadnza richiesta dall'utente. Deve essere successiva alla scadenza attuale e entro l'orario di lavoro.",
+        "part5": "\"Sospendi fino a\" è la data e ora fino a cui l'utente deve sospendere la fase affinché la scadenza sia quella richiesta.",
+        "Fill Remaining SLA field": "Riempire il campo \"SLA Residuo\"",
+        "part6": "Questo campo accetta un input del tipo \"#w #d #h #m\" per impostare nell'ordine settimane, giorni, ore e minuti. Al posto del \"#\" inserire il valore desiderato. Ogni campo è opzionale, ma l'ordine è importante, vedi gli esempi che seguono:",
+        "1 week": "1 settimana: \"1w\"",
+        "1 day": "1 giorno: \"1d\"",
+        "1 day and 4 hours": "1 giorno e 4 ore: \"1d 4h\"",
+        "1 day and 30 minutes": "1 giorno e 30 minuti: \"1d 30m\"",
+        "1 day and 4 hours and 30 minutes": "1 giorno, 4 ore e 30 minuti: \"1d 4h 30m\"",
+        "4 hours and 30 minutes": "4 ore e 30 minuti: \"4h 30m\"",
+        "This is the regular expression used to match the field": "Questa è l'espressione regolare usata per calcolare il valore:"
+      }
+    },
+
+    "Settings": {
+      "Header": "Impostazioni",
+      "WorkingHoursSection": {
+        "Working hours": "Orario di lavoro",
+        "errors": {
+          "1": "C'è un errore nella configurazione, per favore controlla che:",
+          "2": "almeno un intervallo sia attivo;",
+          "3": "ogni orario di fine sia successivo al corrispondente orario di inizio;",
+          "4": "per ogni giorno, gli orari del pomeriggio siano successivi a quelli della mattina."
+        },
+        "Weekday": {
+          "Start": "Inizio",
+          "End": "Fine",
+          "morning": "mattina",
+          "evening": "pomeriggio"
+        }
+      }
+    },
+
+    "and": "e",
+    "Dismiss": "Chiudi",
+    "Go Back": "Indietro",
+    "HelpLabel": "Aiuto",
+    "More": "Di più",
+    "Open": "Apri",
+    "Read more": "Approfondisci",
+    "Reload": "Ricarica",
+
+    "monday": "lunedì",
+    "tuesday": "martedì",
+    "wednesday": "mercoledì",
+    "thursday": "giovedì",
+    "friday": "venerdì",
+    "saturday": "sabato",
+    "sunday": "domenica"
+  }
+}
