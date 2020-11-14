@@ -117,9 +117,9 @@ export const andJoin = (list, glue, and) => {
  * @param  {[type]} d [description]
  * @return {[type]}   [description]
  */
-export const formatDate = d =>
+export const formatDate = (d, l10n = undefined) =>
   // Use `undefined` to use auto detect localization
-  d.toLocaleString(undefined, {
+  d.toLocaleString(l10n, {
     weekday: "long",
     year: "numeric",
     month: "2-digit",
