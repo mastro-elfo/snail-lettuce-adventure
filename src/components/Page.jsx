@@ -1,6 +1,9 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 
+import { makeStyles } from "@material-ui/core/styles";
+import { Paper } from "@material-ui/core";
+
 import { Print, NoPrint } from "./Print";
 import TopFab from "./TopFab";
 
@@ -9,15 +12,19 @@ export default function Page({
   drawer = null,
   header = null,
   print = null,
-  topFab = true
+  topFab = true,
 }) {
+  const classes = useStyles();
+
   return (
     <Fragment>
       <NoPrint>
-        {topFab && <TopFab />}
-        {!!drawer && drawer}
-        {!!header && header}
-        {!!content && content}
+        <Paper square elevation={0} className={classes.paper}>
+          {topFab && <TopFab />}
+          {!!drawer && drawer}
+          {!!header && header}
+          {!!content && content}
+        </Paper>
       </NoPrint>
       <Print>{!!print && print}</Print>
     </Fragment>
@@ -29,5 +36,9 @@ Page.propTypes = {
   content: PropTypes.element,
   drawer: PropTypes.element,
   header: PropTypes.element,
-  print: PropTypes.element
+  print: PropTypes.element,
 };
+
+const useStyles = makeStyles({
+  paper: { minHeight: "100%" },
+});
