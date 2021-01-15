@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e1dd089b554640f97844e6edc0d16924",
+    "revision": "e0a0780b73a996c673a084d31c2622df",
     "url": "/snail-lettuce-adventure/index.html"
   },
   {
-    "revision": "75a21fb240e026847dee",
-    "url": "/snail-lettuce-adventure/static/css/main.5ecd60fb.chunk.css"
+    "revision": "22aaf9742974703c2fb4",
+    "url": "/snail-lettuce-adventure/static/css/main.778ab9ff.chunk.css"
   },
   {
     "revision": "35182deb886676863855",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/snail-lettuce-adventure/static/js/2.fb2f3bba.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "75a21fb240e026847dee",
-    "url": "/snail-lettuce-adventure/static/js/main.d947906c.chunk.js"
+    "revision": "22aaf9742974703c2fb4",
+    "url": "/snail-lettuce-adventure/static/js/main.bb4e5c98.chunk.js"
   },
   {
     "revision": "7b0f1039a875237432f1",
