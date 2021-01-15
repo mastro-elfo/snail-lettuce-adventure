@@ -12,6 +12,10 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.9.0
+
+* Auto detect dark mode if available
+
 ### New in version 1.8.0
 
 * Move translations in code for better performance and offline use;
