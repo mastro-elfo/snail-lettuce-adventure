@@ -12,6 +12,11 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.10.0
+
+* Fix error when an invalid date is typed in "Request" field
+* Check if end date is far in the future (1 year) to avoid "Maximum Recursion" error
+
 ### New in version 1.9.0
 
 * Auto detect dark mode if available
