@@ -4,17 +4,25 @@
 import i18n from "../../i18n";
 
 /**
+ * Check if `date` is a valid `Date`
+ * @param  {[type]}  date [description]
+ * @return {Boolean}      [description]
+ * @see https://stackoverflow.com/a/1353711
+ */
+export const isValid = (date) => date instanceof Date && !isNaN(date);
+
+/**
  * Converts a string into an object matching this regex: `/(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/`
  * @param  {[type]} sla [description]
  * @return {[type]}     [description]
  */
-export const sla2dhm = sla => {
+export const sla2dhm = (sla) => {
   const parts = sla.match(/(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+\s*h)?\s*(\d+\s*m)?/);
   return {
     weeks: parts[1] === undefined ? 0 : parseInt(parts[1]),
     days: parts[2] === undefined ? 0 : parseInt(parts[2]),
     hours: parts[3] === undefined ? 0 : parseInt(parts[3]),
-    minutes: parts[4] === undefined ? 0 : parseInt(parts[4])
+    minutes: parts[4] === undefined ? 0 : parseInt(parts[4]),
   };
 };
 
@@ -23,7 +31,7 @@ export const sla2dhm = sla => {
  * @param  {[type]} dhm [description]
  * @return {[type]}     [description]
  */
-export const dhm2str = dhm => {
+export const dhm2str = (dhm) => {
   const parts = [];
   // Sum each part in minutes
   const sum =
@@ -125,7 +133,7 @@ export const formatDate = (d, l10n = undefined) =>
     month: "2-digit",
     day: "2-digit",
     hour: "2-digit",
-    minute: "2-digit"
+    minute: "2-digit",
     // Don't use these if weekday is set
     // dateStyle: "short",
     // timeStyle: "short"
@@ -223,7 +231,7 @@ export const isWorking = (date, table) => {
  * @param  {[type]} day [description]
  * @return {[type]}     [description]
  */
-export const num2weekday = day =>
+export const num2weekday = (day) =>
   ({
     0: "sunday",
     1: "monday",
@@ -231,7 +239,7 @@ export const num2weekday = day =>
     3: "wednesday",
     4: "thursday",
     5: "friday",
-    6: "saturday"
+    6: "saturday",
   }[day % 7]);
 
 /**
@@ -241,7 +249,7 @@ export const num2weekday = day =>
  * @param  {[type]} list [description]
  * @return {[type]}      [description]
  */
-export const list2length = list =>
+export const list2length = (list) =>
   list.reduce((carry, item) => carry + (item.end - item.start), 0);
 
 /**
@@ -310,6 +318,19 @@ export const table2list = (start, end, table, list = []) => {
  * @return {[type]}       [description]
  */
 export const evalLength = (start, end, table) => {
+  // If end is far in the future, `table2list` throws "InternalError: too much recursion"
+  // This function may return an object, instead of a number, like:
+  // { length: number, error: null|Error }
+  // Then I can manage different scenarios:
+  // - catch
+  // - Limit the value of `end`
+  const MAXIMUM = 31536000000; // 1 year after start
+  if (end - start > MAXIMUM) {
+    console.warn("End date limited");
+    return list2length(
+      table2list(start, new Date(+start + MAXIMUM), table, [])
+    );
+  }
   return list2length(table2list(start, end, table, []));
 };
 
