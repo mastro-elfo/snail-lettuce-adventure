@@ -22,7 +22,8 @@
         "request": {
           "label": "Request expiry date/time",
           "format": "dd/MM/yyyy HH:mm",
-          "helperText": "Request is lower than expiry"
+          "helperText": "Request is lower than expiry",
+          "invalidRequest": "Request date is not valid"
         },
         "until": {
           "part1": "Suspend until",

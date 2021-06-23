@@ -22,7 +22,8 @@
         "request": {
           "label": "Scadenza richiesta",
           "format": "dd/MM/yyyy HH:mm",
-          "helperText": "La richiesta è antecedente alla scadenza"
+          "helperText": "La richiesta è antecedente alla scadenza",
+          "invalidRequest": "La data richiesta non è valida"
         },
         "until": {
           "part1": "Sospendi fino a",
