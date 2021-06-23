@@ -318,6 +318,19 @@ export const table2list = (start, end, table, list = []) => {
  * @return {[type]}       [description]
  */
 export const evalLength = (start, end, table) => {
+  // If end is far in the future, `table2list` throws "InternalError: too much recursion"
+  // This function may return an object, instead of a number, like:
+  // { length: number, error: null|Error }
+  // Then I can manage different scenarios:
+  // - catch
+  // - Limit the value of `end`
+  const MAXIMUM = 31536000000; // 1 year after start
+  if (end - start > MAXIMUM) {
+    console.warn("End date limited");
+    return list2length(
+      table2list(start, new Date(+start + MAXIMUM), table, [])
+    );
+  }
   return list2length(table2list(start, end, table, []));
 };
 
