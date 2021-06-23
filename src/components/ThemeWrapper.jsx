@@ -11,10 +11,22 @@ import secondary from "@material-ui/core/colors/blue";
 const THEME = createMuiTheme({
   palette: {
     primary,
-    secondary
-  }
+    secondary,
+    type: getPreferredColorScheme(),
+  },
 });
 
 export default function ThemeWrapper({ children }) {
   return <MuiThemeProvider theme={THEME}>{children}</MuiThemeProvider>;
+}
+
+function getPreferredColorScheme() {
+  if (window.matchMedia) {
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    } else {
+      return "light";
+    }
+  }
+  return "light";
 }
