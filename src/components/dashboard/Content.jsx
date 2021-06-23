@@ -170,7 +170,6 @@ export default function DashboardContent() {
               format="dd/MM/yyyy HH:mm"
               value={request}
               onChange={(r) => {
-                // console.log(r, isValid(r));
                 if (isValid(r)) {
                   setRequest(r);
                   setValidRequest(true);
