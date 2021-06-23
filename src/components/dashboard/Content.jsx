@@ -12,12 +12,12 @@ import {
   ListItem,
   ListItemSecondaryAction,
   ListItemText,
-  TextField
+  TextField,
 } from "@material-ui/core";
 
 import {
   MuiPickersUtilsProvider,
-  KeyboardDateTimePicker
+  KeyboardDateTimePicker,
 } from "@material-ui/pickers";
 
 import BoxContainer from "../BoxContainer";
@@ -29,7 +29,8 @@ import {
   formatDate,
   isWorking,
   lengthEnd,
-  evalLength
+  evalLength,
+  isValid,
 } from "./utils";
 import { getWeek } from "../settings/fn";
 
@@ -55,6 +56,8 @@ export default function DashboardContent() {
   const [request, setRequest] = useState(now);
   // Until
   const [until, setUntil] = useState(now);
+  //
+  const [validRequest, setValidRequest] = useState(isValid(now));
 
   // useEffect(() => {
   //   // This effect reloads `now` when minute changes
@@ -107,10 +110,10 @@ export default function DashboardContent() {
               nowIsWorking ? "" : t("Dashboard.Content.now.part2")
             }`}
             primaryTypographyProps={{
-              ...(nowIsWorking ? null : { color: "error" })
+              ...(nowIsWorking ? null : { color: "error" }),
             }}
             secondaryTypographyProps={{
-              ...(nowIsWorking ? null : { color: "error" })
+              ...(nowIsWorking ? null : { color: "error" }),
             }}
           />
           <ListItemSecondaryAction>
@@ -138,7 +141,7 @@ export default function DashboardContent() {
                     <HelpIcon />
                   </IconButton>
                 </InputAdornment>
-              )
+              ),
             }}
           />
         </ListItem>
@@ -150,10 +153,10 @@ export default function DashboardContent() {
               expiryIsWorking ? "" : t("Dashboard.Content.expiry.part2")
             }`}
             primaryTypographyProps={{
-              ...(expiryIsWorking ? null : { color: "error" })
+              ...(expiryIsWorking ? null : { color: "error" }),
             }}
             secondaryTypographyProps={{
-              ...(expiryIsWorking ? null : { color: "error" })
+              ...(expiryIsWorking ? null : { color: "error" }),
             }}
           />
         </ListItem>
@@ -166,10 +169,20 @@ export default function DashboardContent() {
               label={t("Dashboard.Content.request.label")}
               format="dd/MM/yyyy HH:mm"
               value={request}
-              onChange={r => setRequest(r)}
-              error={+request < +expiry}
+              onChange={(r) => {
+                // console.log(r, isValid(r));
+                if (isValid(r)) {
+                  setRequest(r);
+                  setValidRequest(true);
+                } else {
+                  setValidRequest(false);
+                }
+              }}
+              error={!validRequest || +request < +expiry}
               helperText={
-                +request < +expiry
+                !validRequest
+                  ? t("Dashboard.Content.request.invalidRequest")
+                  : +request < +expiry
                   ? t("Dashboard.Content.request.helperText")
                   : ""
               }
@@ -188,10 +201,10 @@ export default function DashboardContent() {
                 : ""
             }`}
             primaryTypographyProps={{
-              ...(untilError ? { color: "error" } : null)
+              ...(untilError ? { color: "error" } : null),
             }}
             secondaryTypographyProps={{
-              ...(untilError ? { color: "error" } : null)
+              ...(untilError ? { color: "error" } : null),
             }}
           />
         </ListItem>
