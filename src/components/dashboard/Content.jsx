@@ -97,6 +97,7 @@ export default function DashboardContent() {
     if (error) {
       enqueueSnackbar(t(`Errors.${error.name}`), { variant: "warning" });
     }
+    // eslint-disable-next-line
   }, [expiry, now, request]);
 
   const handleReloadNow = () => {
