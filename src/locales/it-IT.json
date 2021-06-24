@@ -93,6 +93,10 @@
       }
     },
 
+    "Errors": {
+      "EndDateLimitExceeded": "Raggiunto il limite per la data di fine"
+    },
+
     "and": "e",
     "Dismiss": "Chiudi",
     "Go Back": "Indietro",

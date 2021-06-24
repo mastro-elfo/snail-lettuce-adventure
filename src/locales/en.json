@@ -94,6 +94,10 @@
       }
     },
 
+    "Errors": {
+      "EndDateLimitExceeded": "End date limit exceeded"
+    },
+
     "and": "and",
     "Dismiss": "Dismiss",
     "Go Back": "Go Back",
