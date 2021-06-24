@@ -509,7 +509,7 @@ describe("Evaluate the effective length between start and end", () => {
         new Date("2020-01-01T09:30"),
         WEEK
       )
-    ).toBe(60 * 60 * 1000);
+    ).toEqual({ length: 60 * 60 * 1000, error: null });
   });
 
   test("8 hours long", () => {
@@ -519,7 +519,7 @@ describe("Evaluate the effective length between start and end", () => {
         new Date("2020-01-01T18:30"),
         WEEK
       )
-    ).toBe(8 * 60 * 60 * 1000);
+    ).toEqual({ length: 8 * 60 * 60 * 1000, error: null });
   });
 
   test("16 hours long", () => {
@@ -529,7 +529,7 @@ describe("Evaluate the effective length between start and end", () => {
         new Date("2020-01-02T18:30"),
         WEEK
       )
-    ).toBe(16 * 60 * 60 * 1000);
+    ).toEqual({ length: 16 * 60 * 60 * 1000, error: null });
   });
 
   test("Weekend", () => {
@@ -539,7 +539,7 @@ describe("Evaluate the effective length between start and end", () => {
         new Date("2020-01-06T18:30"),
         WEEK
       )
-    ).toBe(12 * 60 * 60 * 1000);
+    ).toEqual({ length: 12 * 60 * 60 * 1000, error: null });
   });
 });
 
@@ -609,7 +609,7 @@ describe("Test real cases", () => {
             new Date(dateAddDhm(new Date("2020-09-15T14:29"), sla2dhm("3h"))),
             new Date("2020-09-18T09:29"),
             WEEK
-          ),
+          ).length,
           WEEK
         ),
         "en-GB"

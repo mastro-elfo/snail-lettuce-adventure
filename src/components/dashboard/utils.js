@@ -2,6 +2,7 @@
 // TODO: check yarn test
 
 import i18n from "../../i18n";
+import { EndDateLimitExceeded } from "./errors";
 
 /**
  * Check if `date` is a valid `Date`
@@ -327,11 +328,17 @@ export const evalLength = (start, end, table) => {
   const MAXIMUM = 31536000000; // 1 year after start
   if (end - start > MAXIMUM) {
     console.warn("End date limited");
-    return list2length(
-      table2list(start, new Date(+start + MAXIMUM), table, [])
-    );
+    return {
+      length: list2length(
+        table2list(start, new Date(+start + MAXIMUM), table, [])
+      ),
+      error: new EndDateLimitExceeded(),
+    };
   }
-  return list2length(table2list(start, end, table, []));
+  return {
+    length: list2length(table2list(start, end, table, [])),
+    error: null,
+  };
 };
 
 /**

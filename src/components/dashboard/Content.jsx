@@ -4,6 +4,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import itLocale from "date-fns/locale/it";
 import { useHistory } from "react-router-dom";
 import { useTranslation } from "react-i18next";
+import { useSnackbar } from "notistack";
 
 import {
   IconButton,
@@ -40,6 +41,7 @@ import ReplayIcon from "@material-ui/icons/Replay";
 export default function DashboardContent() {
   const { push } = useHistory();
   const { t } = useTranslation();
+  const { enqueueSnackbar } = useSnackbar();
 
   // SLA input value
   // Syntax: /(\d+\s*d)?\s*(\d+h)?\s*(\d+m)?/
@@ -80,12 +82,20 @@ export default function DashboardContent() {
   useEffect(() => {
     const week = getWeek();
     // setUntil(new Date(+now + (+request - expiry)));
-    const length = evalLength(new Date(expiry), new Date(request), week);
+    const { length, error } = evalLength(
+      new Date(expiry),
+      new Date(request),
+      week
+    );
     // const length = 0;
     if (length > 0) {
       setUntil(lengthEnd(now, length, week));
     } else {
       setUntil(new Date(now));
+    }
+    //
+    if (error) {
+      enqueueSnackbar(t(`Errors.${error.name}`), { variant: "warning" });
     }
   }, [expiry, now, request]);
 
