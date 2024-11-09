@@ -71,7 +71,7 @@ export default function HelpContent() {
             )}
           </Typography>
           <Typography component="pre" paragraph>
-            /(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+\s*h)?\s*(\d+\s*m)?/
+            /(\d+\s*[ws])?\s*(\d+\s*[dg])?\s*(\d+\s*[ho])?\s*(\d+\s*m)?/i
           </Typography>
         </Typography>
       </HashSection>

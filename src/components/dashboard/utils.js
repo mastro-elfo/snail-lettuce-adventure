@@ -18,7 +18,9 @@ export const isValid = (date) => date instanceof Date && !isNaN(date);
  * @return {[type]}     [description]
  */
 export const sla2dhm = (sla) => {
-  const parts = sla.match(/(\d+\s*w)?\s*(\d+\s*d)?\s*(\d+\s*h)?\s*(\d+\s*m)?/);
+  const parts = sla.match(
+    /(\d+\s*[ws])?\s*(\d+\s*[dg])?\s*(\d+\s*[ho])?\s*(\d+\s*m)?/i
+  );
   return {
     weeks: parts[1] === undefined ? 0 : parseInt(parts[1]),
     days: parts[2] === undefined ? 0 : parseInt(parts[2]),

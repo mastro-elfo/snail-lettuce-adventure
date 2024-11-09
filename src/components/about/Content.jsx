@@ -12,6 +12,11 @@ export default function AboutContent() {
 }
 
 const md = `
+### New in version 1.11.0
+
+* Update the regular expression to extract the remaining SLA
+  Now is \`/(\\d+\\s*[ws])?\\s*(\\d+\\s*[dg])?\\s*(\\d+\\s*[ho])?\\s*(\\d+\\s*m)?/i\`
+
 ### New in version 1.10.0
 
 * Fix error when an invalid date is typed in "Request" field
